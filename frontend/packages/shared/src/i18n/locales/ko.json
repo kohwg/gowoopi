@@ -97,6 +97,7 @@
     "status": {
       "label": "상태 변경",
       "pending": "대기중",
+      "confirmed": "확인됨",
       "preparing": "준비중",
       "completed": "완료"
     },

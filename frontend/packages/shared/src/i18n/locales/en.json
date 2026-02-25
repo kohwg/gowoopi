@@ -97,6 +97,7 @@
     "status": {
       "label": "Change Status",
       "pending": "Pending",
+      "confirmed": "Confirmed",
       "preparing": "Preparing",
       "completed": "Completed"
     },
