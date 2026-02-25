@@ -38,7 +38,18 @@
 - [x] Functional Design (COMPLETED - 2026-02-25T14:53:58+09:00)
 - [x] NFR Requirements (COMPLETED - 2026-02-25T14:56:18+09:00)
 - [x] NFR Design (COMPLETED - 2026-02-25T14:56:18+09:00)
-- [ ] Code Generation - TDD (IN PROGRESS)
+- [x] Code Generation - TDD (COMPLETED - 2026-02-25T15:38:00+09:00)
+
+### Shared Package (공통)
+- [x] Code Generation - TDD (COMPLETED - 2026-02-25T15:45:00+09:00)
+
+### Unit 3: Customer App
+- [ ] Functional Design
+- [ ] Code Generation - TDD
+
+### Unit 4: Admin App
+- [ ] Functional Design
+- [ ] Code Generation - TDD
 
 ### CONSTRUCTION PHASE
 - [ ] Functional Design (EXECUTE, per-unit)

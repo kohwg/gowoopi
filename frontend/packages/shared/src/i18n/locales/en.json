@@ -1,0 +1,67 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "back": "Back",
+    "close": "Close"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "storeId": "Store ID",
+    "tableNumber": "Table Number",
+    "password": "Password",
+    "username": "Username",
+    "loginFailed": "Login failed"
+  },
+  "menu": {
+    "title": "Menu",
+    "category": "Category",
+    "name": "Name",
+    "price": "Price",
+    "description": "Description",
+    "addToCart": "Add to Cart",
+    "noMenus": "No menus available"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Checkout",
+    "clear": "Clear"
+  },
+  "order": {
+    "title": "Order",
+    "orders": "Orders",
+    "orderNumber": "Order Number",
+    "status": "Status",
+    "pending": "Pending",
+    "preparing": "Preparing",
+    "completed": "Completed",
+    "totalAmount": "Total Amount",
+    "createdAt": "Order Time",
+    "noOrders": "No orders",
+    "orderSuccess": "Order placed successfully",
+    "orderFailed": "Order failed"
+  },
+  "table": {
+    "title": "Table",
+    "setup": "Table Setup",
+    "complete": "Complete",
+    "history": "Order History"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "menuManagement": "Menu Management",
+    "tableManagement": "Table Management",
+    "orderManagement": "Order Management"
+  }
+}
