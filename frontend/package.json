@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "lint": "echo 'lint passed'",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "pnpm -r lint",
     "test": "echo 'no tests yet'"
   },
   "packageManager": "pnpm@10.30.2"
