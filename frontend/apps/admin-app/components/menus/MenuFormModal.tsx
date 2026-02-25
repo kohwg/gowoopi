@@ -37,10 +37,18 @@ export function MenuFormModal({ menu, categories, isOpen, onClose, onSubmit }: M
   }, [menu, categories, isOpen]);
 
   const handleSubmit = () => {
+    const catId = parseInt(categoryId, 10);
+    const priceVal = parseInt(price, 10);
+    
+    if (isNaN(catId) || isNaN(priceVal)) {
+      console.error('Invalid categoryId or price');
+      return;
+    }
+    
     const data = {
-      categoryId: parseInt(categoryId, 10),
+      categoryId: catId,
       name,
-      price: parseInt(price, 10),
+      price: priceVal,
       description: description || undefined,
       imageUrl: imageUrl || undefined,
     };

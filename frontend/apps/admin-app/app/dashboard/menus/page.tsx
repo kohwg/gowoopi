@@ -27,11 +27,18 @@ export default function MenusPage() {
     }
   }, [categories, selectedCategory]);
 
+  // Debug
+  console.log('categories:', categories);
+  console.log('menus:', menus);
+  console.log('selectedCategory:', selectedCategory);
+
   const filteredMenus = useMemo(() => {
     if (!selectedCategory) return [];
-    return (menus || [])
+    const filtered = (menus || [])
       .filter((m) => m.categoryId === selectedCategory)
       .sort((a, b) => a.displayOrder - b.displayOrder);
+    console.log('filteredMenus:', filtered);
+    return filtered;
   }, [menus, selectedCategory]);
 
   const handleSubmit = async (data: MenuCreateRequest | MenuUpdateRequest) => {
