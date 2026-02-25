@@ -49,18 +49,21 @@ export default function SetupPage() {
             label={t('auth.storeId')}
             value={storeId}
             onValueChange={setStoreId}
+            autoComplete="off"
           />
           <Input
             label={t('auth.tableNumber')}
             type="number"
             value={tableNumber}
             onValueChange={setTableNumber}
+            autoComplete="off"
           />
           <Input
             label={t('auth.password')}
             type="password"
             value={password}
             onValueChange={setPassword}
+            autoComplete="off"
           />
           <Button
             color="primary"

@@ -32,6 +32,7 @@ export function TableSetupModal({ isOpen, onClose, onSubmit }: TableSetupModalPr
             type="number"
             value={tableNumber}
             onChange={(e) => setTableNumber(e.target.value)}
+            autoComplete="off"
             required
           />
           <Input
@@ -39,6 +40,7 @@ export function TableSetupModal({ isOpen, onClose, onSubmit }: TableSetupModalPr
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="off"
             required
           />
         </ModalBody>
