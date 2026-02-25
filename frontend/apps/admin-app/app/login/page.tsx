@@ -11,9 +11,9 @@ export default function LoginPage() {
   const { t } = useTranslation();
   const loginMutation = useAdminLogin();
 
-  const [storeId, setStoreId] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [storeId, setStoreId] = useState('00000000-0000-0000-0000-000000000001');
+  const [username, setUsername] = useState('admin');
+  const [password, setPassword] = useState('admin123');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -14,9 +14,9 @@ export default function SetupPage() {
   const { setSetup } = useSetupStore();
   const customerLogin = useCustomerLogin();
 
-  const [storeId, setStoreId] = useState('');
-  const [tableNumber, setTableNumber] = useState('');
-  const [password, setPassword] = useState('');
+  const [storeId, setStoreId] = useState('00000000-0000-0000-0000-000000000001');
+  const [tableNumber, setTableNumber] = useState('1');
+  const [password, setPassword] = useState('admin123');
   const [mounted, setMounted] = useState(false);
 
   useState(() => { setMounted(true); });
