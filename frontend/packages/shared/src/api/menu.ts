@@ -7,11 +7,12 @@ export const menuKeys = {
   byStore: (storeId: string) => [...menuKeys.all, storeId] as const,
 };
 
-export function useMenus(storeId: string) {
+export function useMenus(storeId: string, role: 'customer' | 'admin' = 'customer') {
   return useQuery({
     queryKey: menuKeys.byStore(storeId),
     queryFn: async (): Promise<Menu[]> => {
-      const res = await getApiClient().get('/api/customer/menus');
+      const endpoint = role === 'admin' ? '/api/admin/menus' : '/api/customer/menus';
+      const res = await getApiClient().get(endpoint);
       const data = res.data ?? [];
       return data.map((m: Record<string, unknown>) => ({
         id: m.ID,

@@ -16,7 +16,7 @@ const mockCategories: Category[] = [
 export default function MenusPage() {
   const { t } = useTranslation();
   const { auth } = useAuth();
-  const { data: menus, isLoading } = useMenus(auth?.storeId || '');
+  const { data: menus, isLoading } = useMenus(auth?.storeId || '', 'admin');
   const createMenu = useCreateMenu();
   const updateMenu = useUpdateMenu();
   const deleteMenu = useDeleteMenu();
