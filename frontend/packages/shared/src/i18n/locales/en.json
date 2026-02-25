@@ -15,6 +15,20 @@
     "logout": "Logout",
     "actions": "Actions"
   },
+  "auth": {
+    "storeId": "Store ID",
+    "tableNumber": "Table Number",
+    "password": "Password",
+    "login": "Login",
+    "loginFailed": "Login failed"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Cart is empty",
+    "total": "Total",
+    "clear": "Clear",
+    "checkout": "Order"
+  },
   "app": {
     "title": "Table Order Admin"
   },
@@ -43,12 +57,7 @@
     "inactive": "Inactive",
     "empty": "No tables",
     "management": "Table Management",
-    "setup": {
-      "button": "Setup Table",
-      "title": "Table Setup",
-      "number": "Table Number",
-      "password": "Password"
-    },
+    "setup": "Table Setup",
     "complete": "Complete",
     "completeConfirm": {
       "title": "Complete Table",
@@ -70,9 +79,14 @@
     "detail": "Order Detail",
     "quantity": "Qty",
     "total": "Total",
+    "totalAmount": "Total Amount",
     "id": "Order ID",
     "time": "Order Time",
     "completedAt": "Completed At",
+    "title": "Orders",
+    "orders": "Orders",
+    "noOrders": "No orders",
+    "orderFailed": "Order failed",
     "status": {
       "label": "Change Status",
       "pending": "Pending",
@@ -96,6 +110,9 @@
     "image": "Image",
     "order": "Order",
     "empty": "No menus",
+    "title": "Menu",
+    "addToCart": "Add to Cart",
+    "noMenus": "No menus",
     "deleteConfirm": {
       "title": "Delete Menu",
       "message": "Delete this menu?"

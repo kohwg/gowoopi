@@ -17,6 +17,11 @@ export default function SetupPage() {
   const [storeId, setStoreId] = useState('');
   const [tableNumber, setTableNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [mounted, setMounted] = useState(false);
+
+  useState(() => { setMounted(true); });
+
+  if (!mounted) return null;
 
   const handleSubmit = () => {
     const tableNum = parseInt(tableNumber, 10);
