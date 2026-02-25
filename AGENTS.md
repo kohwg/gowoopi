@@ -82,6 +82,40 @@ Choose TDD (Test-Driven Development) approach during code generation:
 - Load artifacts and decisions from previous stages
 - Review previous conversation context from audit log
 
+## Commit Message Guidelines
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) format:
+
+```
+<type>(<scope>): <subject>
+```
+
+### Types
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only
+- `style`: Code style (formatting, no logic change)
+- `refactor`: Code refactoring
+- `perf`: Performance improvement
+- `test`: Adding/updating tests
+- `ci`: CI/CD changes
+- `chore`: Maintenance tasks
+- `build`: Build system changes
+- `revert`: Revert previous commit
+
+### Rules
+- Subject: imperative mood, lowercase, no period, max 50 chars
+- Scope: optional, indicates affected area (e.g., `api`, `auth`, `db`)
+- Body: optional, explain what and why (not how)
+
+### Examples
+```
+feat(order): add table order creation endpoint
+fix(auth): resolve token expiration issue
+docs(readme): update installation instructions
+refactor: simplify order validation logic
+```
+
 ## Security Considerations
 
 - Never include sensitive info (API keys, passwords) directly in code
