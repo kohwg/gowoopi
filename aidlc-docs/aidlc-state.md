@@ -44,8 +44,7 @@
 - [x] Code Generation - TDD (COMPLETED - 2026-02-25T15:45:00+09:00)
 
 ### Unit 3: Customer App
-- [ ] Functional Design
-- [ ] Code Generation - TDD
+- [x] Code Generation - TDD (COMPLETED - 2026-02-25T16:00:00+09:00)
 
 ### Unit 4: Admin App
 - [ ] Functional Design
