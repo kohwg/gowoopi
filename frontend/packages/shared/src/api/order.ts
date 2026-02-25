@@ -13,7 +13,7 @@ export function useCustomerOrders() {
     queryKey: orderKeys.customer(),
     queryFn: async (): Promise<Order[]> => {
       const res = await getApiClient().get('/api/customer/orders');
-      return res.data.orders;
+      return res.data ?? [];
     },
   });
 }
@@ -23,7 +23,7 @@ export function useAdminOrders() {
     queryKey: orderKeys.admin(),
     queryFn: async (): Promise<Order[]> => {
       const res = await getApiClient().get('/api/admin/orders');
-      return res.data.orders;
+      return res.data ?? [];
     },
   });
 }
