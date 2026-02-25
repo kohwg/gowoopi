@@ -1,14 +1,13 @@
 package database
 
 import (
-	"github.com/google/uuid"
 	"github.com/kohwg/gowoopi/backend/internal/model"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
 func Seed(db *gorm.DB) error {
-	storeID := uuid.New().String()
+	storeID := "store-001"
 
 	store := model.Store{ID: storeID, Name: "테스트 매장", DefaultLanguage: "ko"}
 	if err := db.FirstOrCreate(&store, model.Store{ID: storeID}).Error; err != nil {
