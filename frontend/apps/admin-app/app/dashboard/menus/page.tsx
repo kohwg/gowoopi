@@ -1,33 +1,34 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, Image } from '@heroui/react';
-import { useMenus, useCreateMenu, useUpdateMenu, useDeleteMenu, useUpdateMenuOrder, useAuth, useTranslation, type Menu, type Category, type MenuCreateRequest, type MenuUpdateRequest } from '@gowoopi/shared';
+import { useMenus, useCategories, useCreateMenu, useUpdateMenu, useDeleteMenu, useUpdateMenuOrder, useAuth, useTranslation, type Menu, type MenuCreateRequest, type MenuUpdateRequest } from '@gowoopi/shared';
 import { CategoryTabs, MenuFormModal } from '@/components/menus';
 import { ConfirmModal } from '@/components/shared/ConfirmModal';
-
-// TODO: API에서 카테고리 조회 추가 필요. 임시로 하드코딩
-const mockCategories: Category[] = [
-  { id: 1, storeId: '', name: '메인', displayOrder: 1 },
-  { id: 2, storeId: '', name: '사이드', displayOrder: 2 },
-  { id: 3, storeId: '', name: '음료', displayOrder: 3 },
-];
 
 export default function MenusPage() {
   const { t } = useTranslation();
   const { auth } = useAuth();
   const { data: menus, isLoading } = useMenus(auth?.storeId || '', 'admin');
+  const { data: categories } = useCategories(auth?.storeId || '');
   const createMenu = useCreateMenu();
   const updateMenu = useUpdateMenu();
   const deleteMenu = useDeleteMenu();
   const updateOrder = useUpdateMenuOrder();
 
-  const [selectedCategory, setSelectedCategory] = useState(mockCategories[0]?.id || 1);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [editMenu, setEditMenu] = useState<Menu | undefined>();
   const [showForm, setShowForm] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<Menu | null>(null);
 
+  useEffect(() => {
+    if (categories?.length && !selectedCategory) {
+      setSelectedCategory(categories[0].id);
+    }
+  }, [categories, selectedCategory]);
+
   const filteredMenus = useMemo(() => {
+    if (!selectedCategory) return [];
     return (menus || [])
       .filter((m) => m.categoryId === selectedCategory)
       .sort((a, b) => a.displayOrder - b.displayOrder);
@@ -75,7 +76,7 @@ export default function MenusPage() {
         </Button>
       </div>
 
-      <CategoryTabs categories={mockCategories} selectedId={selectedCategory} onSelect={setSelectedCategory} />
+      <CategoryTabs categories={categories || []} selectedId={selectedCategory} onSelect={setSelectedCategory} />
 
       <Table aria-label="Menus">
         <TableHeader>
@@ -116,7 +117,7 @@ export default function MenusPage() {
 
       <MenuFormModal
         menu={editMenu}
-        categories={mockCategories}
+        categories={categories || []}
         isOpen={showForm}
         onClose={() => { setShowForm(false); setEditMenu(undefined); }}
         onSubmit={handleSubmit}

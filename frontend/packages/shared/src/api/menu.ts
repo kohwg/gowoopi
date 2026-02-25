@@ -1,11 +1,33 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getApiClient } from './client';
-import type { Menu, MenuCreateRequest, MenuOrderItem, MenuUpdateRequest } from '../types';
+import type { Category, Menu, MenuCreateRequest, MenuOrderItem, MenuUpdateRequest } from '../types';
 
 export const menuKeys = {
   all: ['menus'] as const,
   byStore: (storeId: string) => [...menuKeys.all, storeId] as const,
 };
+
+export const categoryKeys = {
+  all: ['categories'] as const,
+  byStore: (storeId: string) => [...categoryKeys.all, storeId] as const,
+};
+
+export function useCategories(storeId: string) {
+  return useQuery({
+    queryKey: categoryKeys.byStore(storeId),
+    queryFn: async (): Promise<Category[]> => {
+      const res = await getApiClient().get('/api/admin/categories');
+      const data = res.data ?? [];
+      return data.map((c: Record<string, unknown>) => ({
+        id: c.ID,
+        storeId: c.StoreID,
+        name: c.Name,
+        displayOrder: c.SortOrder,
+      }));
+    },
+    enabled: !!storeId,
+  });
+}
 
 export function useMenus(storeId: string, role: 'customer' | 'admin' = 'customer') {
   return useQuery({

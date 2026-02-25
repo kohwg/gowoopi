@@ -18,6 +18,10 @@ func (s *menuService) GetMenusByStore(storeID string) ([]model.Menu, error) {
 	return s.menuRepo.FindByStore(storeID)
 }
 
+func (s *menuService) GetCategoriesByStore(storeID string) ([]model.Category, error) {
+	return s.categoryRepo.FindByStore(storeID)
+}
+
 func (s *menuService) CreateMenu(storeID string, req model.MenuCreateRequest) (*model.Menu, error) {
 	if _, err := s.categoryRepo.FindByID(req.CategoryID); err != nil {
 		return nil, model.WrapNotFound("카테고리")

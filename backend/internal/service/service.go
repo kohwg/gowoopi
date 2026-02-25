@@ -16,6 +16,7 @@ type AuthService interface {
 
 type MenuService interface {
 	GetMenusByStore(storeID string) ([]model.Menu, error)
+	GetCategoriesByStore(storeID string) ([]model.Category, error)
 	CreateMenu(storeID string, req model.MenuCreateRequest) (*model.Menu, error)
 	UpdateMenu(id uint, req model.MenuUpdateRequest) (*model.Menu, error)
 	DeleteMenu(id uint) error

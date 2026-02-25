@@ -37,6 +37,25 @@ func (h *MenuHandler) GetMenus(c *gin.Context) {
 	c.JSON(http.StatusOK, menus)
 }
 
+// GetCategories godoc
+// @Summary 카테고리 목록 조회
+// @Description 매장의 카테고리 목록
+// @Tags Menu
+// @Produce json
+// @Success 200 {array} model.Category
+// @Failure 401 {object} model.ErrorResponse
+// @Router /api/admin/categories [get]
+// @Security BearerAuth
+func (h *MenuHandler) GetCategories(c *gin.Context) {
+	claims := middleware.GetClaims(c)
+	categories, err := h.menuSvc.GetCategoriesByStore(claims.StoreID)
+	if err != nil {
+		handleError(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, categories)
+}
+
 // CreateMenu godoc
 // @Summary 메뉴 생성
 // @Description 새 메뉴 추가 (관리자)
