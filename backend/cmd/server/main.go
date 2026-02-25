@@ -12,7 +12,20 @@ import (
 	"github.com/kohwg/gowoopi/backend/internal/middleware"
 	"github.com/kohwg/gowoopi/backend/internal/repository/impl"
 	"github.com/kohwg/gowoopi/backend/internal/service"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	_ "github.com/kohwg/gowoopi/backend/docs"
 )
+
+// @title			Gowoopi Table Order API
+// @version		1.0
+// @description	테이블오더 서비스 API
+// @host			localhost:8080
+// @BasePath		/
+// @securityDefinitions.apikey	BearerAuth
+// @in							header
+// @name						Authorization
 
 func main() {
 	cfg := &database.Config{
@@ -69,6 +82,9 @@ func main() {
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
 	}))
+
+	// Swagger
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Public routes
 	r.POST("/api/customer/login", authH.CustomerLogin)

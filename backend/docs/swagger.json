@@ -1,0 +1,1215 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "테이블오더 서비스 API",
+        "title": "Gowoopi Table Order API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/admin/login": {
+            "post": {
+                "description": "매장 관리자 로그인",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "관리자 로그인",
+                "parameters": [
+                    {
+                        "description": "로그인 요청",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.AdminLoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.AuthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/menus": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "새 메뉴 추가 (관리자)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "메뉴 생성",
+                "parameters": [
+                    {
+                        "description": "메뉴 정보",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.MenuCreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Menu"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/menus/order": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "메뉴 정렬 순서 변경 (관리자)",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "메뉴 순서 변경",
+                "parameters": [
+                    {
+                        "description": "순서 정보",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.MenuOrderRequest"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/menus/{id}": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "메뉴 정보 수정 (관리자)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "메뉴 수정",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "메뉴 ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "수정할 정보",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.MenuUpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Menu"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "메뉴 삭제 (관리자)",
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "메뉴 삭제",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "메뉴 ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/orders": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "매장의 전체 주문 목록 (관리자)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "매장 주문 조회",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Order"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/orders/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "주문 삭제 (관리자)",
+                "tags": [
+                    "Order"
+                ],
+                "summary": "주문 삭제",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "주문 ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/orders/{id}/status": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "주문 상태 업데이트 (관리자)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "주문 상태 변경",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "주문 ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "상태 정보",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.StatusUpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Order"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/tables/setup": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "새 테이블 생성 (관리자)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Table"
+                ],
+                "summary": "테이블 설정",
+                "parameters": [
+                    {
+                        "description": "테이블 정보",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.TableSetupRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Table"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/tables/{id}/complete": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "테이블 세션 종료 및 주문 히스토리 이동 (관리자)",
+                "tags": [
+                    "Table"
+                ],
+                "summary": "테이블 이용 완료",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "테이블 ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/tables/{id}/history": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "테이블의 과거 주문 내역 조회 (관리자)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Table"
+                ],
+                "summary": "테이블 주문 히스토리",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "테이블 ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "시작일 (YYYY-MM-DD)",
+                        "name": "from",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "종료일 (YYYY-MM-DD)",
+                        "name": "to",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.OrderHistory"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/refresh": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Access token 갱신",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "토큰 갱신",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/login": {
+            "post": {
+                "description": "QR코드 스캔 후 테이블 세션 생성",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "고객 로그인",
+                "parameters": [
+                    {
+                        "description": "로그인 요청",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.CustomerLoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.AuthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/menus": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "매장의 카테고리별 메뉴 목록",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "메뉴 목록 조회",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Category"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/orders": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "현재 세션의 주문 목록 (고객)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "내 주문 조회",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Order"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "새 주문 생성 (고객)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "주문 생성",
+                "parameters": [
+                    {
+                        "description": "주문 정보",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.OrderCreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Order"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "github_com_kohwg_gowoopi_backend_internal_model.AdminLoginRequest": {
+            "type": "object",
+            "required": [
+                "password",
+                "store_id",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "store_id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.AuthResponse": {
+            "type": "object",
+            "properties": {
+                "role": {
+                    "type": "string"
+                },
+                "store_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.Category": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sortOrder": {
+                    "type": "integer"
+                },
+                "store": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Store"
+                },
+                "storeID": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.CustomerLoginRequest": {
+            "type": "object",
+            "required": [
+                "password",
+                "store_id",
+                "table_number"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "store_id": {
+                    "type": "string"
+                },
+                "table_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.ErrorDetail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.ErrorDetail"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.Menu": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Category"
+                },
+                "categoryID": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "imageURL": {
+                    "type": "string"
+                },
+                "isAvailable": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "sortOrder": {
+                    "type": "integer"
+                },
+                "store": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Store"
+                },
+                "storeID": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.MenuCreateRequest": {
+            "type": "object",
+            "required": [
+                "category_id",
+                "name",
+                "price"
+            ],
+            "properties": {
+                "category_id": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "is_available": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.MenuOrderRequest": {
+            "type": "object",
+            "required": [
+                "id",
+                "sort_order"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "sort_order": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.MenuUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "category_id": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "is_available": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.Order": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.OrderItem"
+                    }
+                },
+                "session": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.TableSession"
+                },
+                "sessionID": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.OrderStatus"
+                },
+                "store": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Store"
+                },
+                "storeID": {
+                    "type": "string"
+                },
+                "table": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Table"
+                },
+                "tableID": {
+                    "type": "integer"
+                },
+                "totalAmount": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.OrderCreateRequest": {
+            "type": "object",
+            "required": [
+                "items"
+            ],
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.OrderItemRequest"
+                    }
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.OrderHistory": {
+            "type": "object",
+            "properties": {
+                "completedAt": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "itemsJSON": {
+                    "type": "string"
+                },
+                "orderedAt": {
+                    "type": "string"
+                },
+                "originalOrderID": {
+                    "type": "string"
+                },
+                "sessionID": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "store": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Store"
+                },
+                "storeID": {
+                    "type": "string"
+                },
+                "table": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Table"
+                },
+                "tableID": {
+                    "type": "integer"
+                },
+                "tableNumber": {
+                    "type": "integer"
+                },
+                "totalAmount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.OrderItem": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "menu": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Menu"
+                },
+                "menuID": {
+                    "type": "integer"
+                },
+                "menuName": {
+                    "type": "string"
+                },
+                "order": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Order"
+                },
+                "orderID": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer"
+                },
+                "subtotal": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.OrderItemRequest": {
+            "type": "object",
+            "required": [
+                "menu_id",
+                "quantity"
+            ],
+            "properties": {
+                "menu_id": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.OrderStatus": {
+            "type": "string",
+            "enum": [
+                "PENDING",
+                "CONFIRMED",
+                "PREPARING",
+                "COMPLETED"
+            ],
+            "x-enum-varnames": [
+                "OrderStatusPending",
+                "OrderStatusConfirmed",
+                "OrderStatusPreparing",
+                "OrderStatusCompleted"
+            ]
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.StatusUpdateRequest": {
+            "type": "object",
+            "required": [
+                "status"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.Store": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "defaultLanguage": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.Table": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "passwordHash": {
+                    "type": "string"
+                },
+                "store": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Store"
+                },
+                "storeID": {
+                    "type": "string"
+                },
+                "tableNumber": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.TableSession": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "endedAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "store": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Store"
+                },
+                "storeID": {
+                    "type": "string"
+                },
+                "table": {
+                    "$ref": "#/definitions/github_com_kohwg_gowoopi_backend_internal_model.Table"
+                },
+                "tableID": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_kohwg_gowoopi_backend_internal_model.TableSetupRequest": {
+            "type": "object",
+            "required": [
+                "password",
+                "table_number"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "table_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "gorm.DeletedAt": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "type": "string"
+                },
+                "valid": {
+                    "description": "Valid is true if Time is not NULL",
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

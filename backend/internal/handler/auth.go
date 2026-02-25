@@ -16,6 +16,17 @@ func NewAuthHandler(authSvc service.AuthService) *AuthHandler {
 	return &AuthHandler{authSvc: authSvc}
 }
 
+// CustomerLogin godoc
+// @Summary 고객 로그인
+// @Description QR코드 스캔 후 테이블 세션 생성
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param request body model.CustomerLoginRequest true "로그인 요청"
+// @Success 200 {object} model.AuthResponse
+// @Failure 400 {object} model.ErrorResponse
+// @Failure 404 {object} model.ErrorResponse
+// @Router /api/customer/login [post]
 func (h *AuthHandler) CustomerLogin(c *gin.Context) {
 	var req model.CustomerLoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -31,6 +42,17 @@ func (h *AuthHandler) CustomerLogin(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
+// AdminLogin godoc
+// @Summary 관리자 로그인
+// @Description 매장 관리자 로그인
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param request body model.AdminLoginRequest true "로그인 요청"
+// @Success 200 {object} model.AuthResponse
+// @Failure 400 {object} model.ErrorResponse
+// @Failure 401 {object} model.ErrorResponse
+// @Router /api/admin/login [post]
 func (h *AuthHandler) AdminLogin(c *gin.Context) {
 	var req model.AdminLoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -46,6 +68,15 @@ func (h *AuthHandler) AdminLogin(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
+// RefreshToken godoc
+// @Summary 토큰 갱신
+// @Description Access token 갱신
+// @Tags Auth
+// @Produce json
+// @Success 200 {object} map[string]string
+// @Failure 401 {object} model.ErrorResponse
+// @Router /api/auth/refresh [post]
+// @Security BearerAuth
 func (h *AuthHandler) RefreshToken(c *gin.Context) {
 	refreshToken, err := c.Cookie("refresh_token")
 	if err != nil {
