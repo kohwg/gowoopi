@@ -20,6 +20,33 @@ tasks:
     cmds:
       - docker compose down
 
+  db:seed:
+    desc: Insert test data (치킨집 메뉴)
+    cmds:
+      - docker compose exec -T mysql mysql -uroot -proot gowoopi < database/seed.sql
+      - echo "✅ Seed data inserted!"
+
+  db:reset:
+    desc: Reset database and insert seed data
+    cmds:
+      - docker compose exec -T mysql mysql -uroot -proot -e "DROP DATABASE IF EXISTS gowoopi; CREATE DATABASE gowoopi;"
+      - task: backend:migrate
+      - task: db:seed
+
+  backend:migrate:
+    desc: Run database migrations
+    dir: backend
+    env:
+      DB_HOST: "{{.DB_HOST}}"
+      DB_PORT: "{{.DB_PORT}}"
+      DB_USER: "{{.DB_USER}}"
+      DB_PASSWORD: "{{.DB_PASSWORD}}"
+      DB_NAME: "{{.DB_NAME}}"
+    cmds:
+      - go run cmd/server/main.go &
+      - sleep 3
+      - pkill -f "go run cmd/server/main.go" || true
+
   infra:wait:
     desc: Wait for MySQL to be ready
     cmds:
