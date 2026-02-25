@@ -14,7 +14,10 @@ export function CategoryTabs({ categories, selected, onSelect }: CategoryTabsPro
     <Tabs
       selectedKey={selected?.toString() ?? 'all'}
       onSelectionChange={(key) => onSelect(key === 'all' ? null : Number(key))}
-      className="mb-4"
+      className="mb-6"
+      variant="underlined"
+      color="primary"
+      size="lg"
     >
       <Tab key="all" title="전체" />
       {categories.map((cat) => (

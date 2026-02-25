@@ -38,11 +38,13 @@ export default function SetupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardBody className="gap-4">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary-50 via-background to-secondary-50">
+      <Card className="w-full max-w-md shadow-2xl">
+        <CardBody className="gap-6 p-8">
           <div className="flex justify-between items-center">
-            <h1 className="text-xl font-bold">{t('table.setup')}</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              {t('table.setup')}
+            </h1>
             <LanguageSwitcher />
           </div>
           <Input
@@ -50,6 +52,8 @@ export default function SetupPage() {
             value={storeId}
             onValueChange={setStoreId}
             autoComplete="off"
+            variant="bordered"
+            size="lg"
           />
           <Input
             label={t('auth.tableNumber')}
@@ -57,6 +61,8 @@ export default function SetupPage() {
             value={tableNumber}
             onValueChange={setTableNumber}
             autoComplete="off"
+            variant="bordered"
+            size="lg"
           />
           <Input
             label={t('auth.password')}
@@ -64,16 +70,20 @@ export default function SetupPage() {
             value={password}
             onValueChange={setPassword}
             autoComplete="off"
+            variant="bordered"
+            size="lg"
           />
           <Button
             color="primary"
             onPress={handleSubmit}
             isLoading={customerLogin.isPending}
+            size="lg"
+            className="font-semibold shadow-lg"
           >
             {t('auth.login')}
           </Button>
           {customerLogin.isError && (
-            <p className="text-danger text-sm">{t('auth.loginFailed')}</p>
+            <p className="text-danger text-sm text-center">{t('auth.loginFailed')}</p>
           )}
         </CardBody>
       </Card>

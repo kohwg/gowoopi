@@ -47,28 +47,37 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen pb-20">
-      <header className="sticky top-0 bg-background z-40 p-4 border-b flex justify-between items-center">
-        <h1 className="text-xl font-bold">{auth?.storeName}</h1>
-        <div className="flex gap-2">
-          <Button variant="light" size="sm" onPress={() => router.push('/orders')}>
-            {t('order.orders')}
-          </Button>
-          <LanguageSwitcher />
+    <div className="min-h-screen pb-20 bg-gradient-to-b from-background to-default-50">
+      <header className="sticky top-0 bg-background/80 backdrop-blur-lg z-40 px-6 py-4 border-b border-divider shadow-sm">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            {auth?.storeName}
+          </h1>
+          <div className="flex gap-3">
+            <Button 
+              variant="flat" 
+              size="sm" 
+              onPress={() => router.push('/orders')}
+              className="font-medium"
+            >
+              {t('order.orders')}
+            </Button>
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
 
-      <main className="p-4">
+      <main className="max-w-7xl mx-auto px-6 py-6">
         <CategoryTabs categories={categories} selected={selectedCategory} onSelect={setSelectedCategory} />
 
         {menusLoading ? (
-          <div className="flex justify-center py-8">
-            <Spinner />
+          <div className="flex justify-center py-12">
+            <Spinner size="lg" />
           </div>
         ) : !filteredMenus.length ? (
-          <p className="text-center text-default-500 py-8">{t('menu.noMenus')}</p>
+          <p className="text-center text-default-400 py-12 text-lg">{t('menu.noMenus')}</p>
         ) : (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredMenus.map((menu) => (
               <MenuCard key={menu.id} menu={menu} />
             ))}
