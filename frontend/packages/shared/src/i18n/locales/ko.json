@@ -1,0 +1,67 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "retry": "다시 시도",
+    "cancel": "취소",
+    "confirm": "확인",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "수정",
+    "add": "추가",
+    "search": "검색",
+    "back": "뒤로",
+    "close": "닫기"
+  },
+  "auth": {
+    "login": "로그인",
+    "logout": "로그아웃",
+    "storeId": "매장 ID",
+    "tableNumber": "테이블 번호",
+    "password": "비밀번호",
+    "username": "사용자명",
+    "loginFailed": "로그인에 실패했습니다"
+  },
+  "menu": {
+    "title": "메뉴",
+    "category": "카테고리",
+    "name": "메뉴명",
+    "price": "가격",
+    "description": "설명",
+    "addToCart": "장바구니 담기",
+    "noMenus": "메뉴가 없습니다"
+  },
+  "cart": {
+    "title": "장바구니",
+    "empty": "장바구니가 비어있습니다",
+    "total": "총 금액",
+    "checkout": "주문하기",
+    "clear": "비우기"
+  },
+  "order": {
+    "title": "주문",
+    "orders": "주문 내역",
+    "orderNumber": "주문 번호",
+    "status": "상태",
+    "pending": "대기중",
+    "preparing": "준비중",
+    "completed": "완료",
+    "totalAmount": "총 금액",
+    "createdAt": "주문 시간",
+    "noOrders": "주문 내역이 없습니다",
+    "orderSuccess": "주문이 완료되었습니다",
+    "orderFailed": "주문에 실패했습니다"
+  },
+  "table": {
+    "title": "테이블",
+    "setup": "테이블 설정",
+    "complete": "이용 완료",
+    "history": "주문 이력"
+  },
+  "admin": {
+    "dashboard": "대시보드",
+    "menuManagement": "메뉴 관리",
+    "tableManagement": "테이블 관리",
+    "orderManagement": "주문 관리"
+  }
+}

@@ -173,7 +173,8 @@ project.fragment.lock.json
 artifacts/
 *.nuget.props
 *.nuget.targets
-packages/
+# packages/ - excluded for frontend/packages
+!/frontend/packages/
 
 # ============================================
 # Go
