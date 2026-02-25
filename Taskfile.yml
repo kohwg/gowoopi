@@ -1,0 +1,106 @@
+version: '3'
+
+vars:
+  DB_HOST: localhost
+  DB_PORT: 3306
+  DB_USER: root
+  DB_PASSWORD: root
+  DB_NAME: gowoopi
+
+tasks:
+  # Infrastructure
+  infra:up:
+    desc: Start MySQL container
+    cmds:
+      - docker compose up -d
+      - task: infra:wait
+
+  infra:down:
+    desc: Stop MySQL container
+    cmds:
+      - docker compose down
+
+  infra:wait:
+    desc: Wait for MySQL to be ready
+    cmds:
+      - |
+        until docker compose exec -T mysql mysqladmin ping -h localhost --silent; do
+          echo "Waiting for MySQL..."
+          sleep 2
+        done
+        echo "MySQL is ready!"
+
+  # Backend
+  backend:run:
+    desc: Run backend server
+    dir: backend
+    env:
+      DB_HOST: "{{.DB_HOST}}"
+      DB_PORT: "{{.DB_PORT}}"
+      DB_USER: "{{.DB_USER}}"
+      DB_PASSWORD: "{{.DB_PASSWORD}}"
+      DB_NAME: "{{.DB_NAME}}"
+    cmds:
+      - go run cmd/server/main.go
+
+  backend:test:
+    desc: Run backend tests
+    dir: backend
+    cmds:
+      - go test -v ./...
+
+  backend:lint:
+    desc: Run backend linter
+    dir: backend
+    cmds:
+      - golangci-lint run
+
+  # Frontend
+  frontend:install:
+    desc: Install frontend dependencies
+    dir: frontend
+    cmds:
+      - pnpm install
+
+  frontend:dev:
+    desc: Run frontend dev server (all apps)
+    dir: frontend
+    cmds:
+      - pnpm dev
+
+  frontend:lint:
+    desc: Run frontend linter
+    dir: frontend
+    cmds:
+      - pnpm lint
+
+  frontend:test:
+    desc: Run frontend tests
+    dir: frontend
+    cmds:
+      - pnpm test
+
+  # Combined
+  dev:
+    desc: Start all services for local development
+    cmds:
+      - task: infra:up
+      - echo "Run 'task backend:run' and 'task frontend:dev' in separate terminals"
+
+  test:
+    desc: Run all tests
+    cmds:
+      - task: backend:test
+      - task: frontend:test
+
+  lint:
+    desc: Run all linters
+    cmds:
+      - task: backend:lint
+      - task: frontend:lint
+
+  clean:
+    desc: Clean up everything
+    cmds:
+      - task: infra:down
+      - docker volume rm gowoopi_mysql_data 2>/dev/null || true
