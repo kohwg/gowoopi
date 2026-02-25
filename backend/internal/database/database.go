@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -44,6 +44,7 @@ func Connect(cfg *Config) (*gorm.DB, error) {
 func AutoMigrate(db *gorm.DB) error {
 	return db.AutoMigrate(
 		&model.Store{},
+		&model.Admin{},
 		&model.Category{},
 		&model.Table{},
 		&model.TableSession{},

@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/kohwg/gowoopi/backend/internal/model"
-	"github.com/kohwg/gowoopi/backend/internal/testutil"
+	"github.com/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/testutil"
 )
 
 func setupSessionTestData(t *testing.T) (*sessionRepository, string, uint, func()) {
@@ -15,7 +15,7 @@ func setupSessionTestData(t *testing.T) (*sessionRepository, string, uint, func(
 	repo := NewSessionRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	tbl := &model.Table{StoreID: storeID, TableNumber: 1, PasswordHash: "hash", IsActive: true}
 	db.Create(tbl)
 

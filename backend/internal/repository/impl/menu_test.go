@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/kohwg/gowoopi/backend/internal/model"
-	"github.com/kohwg/gowoopi/backend/internal/testutil"
+	"github.com/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/testutil"
 	"gorm.io/gorm"
 )
 
@@ -15,7 +15,7 @@ func setupMenuTestData(t *testing.T) (*menuRepository, *gorm.DB, string, uint, f
 	repo := NewMenuRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	cat := &model.Category{StoreID: storeID, Name: "Main", SortOrder: 1}
 	db.Create(cat)
 

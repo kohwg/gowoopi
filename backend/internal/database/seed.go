@@ -2,24 +2,22 @@ package database
 
 import (
 	"github.com/google/uuid"
-	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/model"
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
-// Seed - 개발용 시드 데이터 생성
 func Seed(db *gorm.DB) error {
 	storeID := uuid.New().String()
 
-	store := model.Store{
-		ID:                storeID,
-		Name:              "테스트 매장",
-		AdminUsername:     "admin",
-		AdminPasswordHash: "$2a$10$placeholder", // 실제 사용 시 bcrypt 해시로 교체
-		DefaultLanguage:   "ko",
-	}
+	store := model.Store{ID: storeID, Name: "테스트 매장", DefaultLanguage: "ko"}
 	if err := db.FirstOrCreate(&store, model.Store{ID: storeID}).Error; err != nil {
 		return err
 	}
+
+	hash, _ := bcrypt.GenerateFromPassword([]byte("admin123"), 10)
+	admin := model.Admin{StoreID: storeID, Username: "admin", PasswordHash: string(hash), Name: "관리자"}
+	db.FirstOrCreate(&admin, model.Admin{StoreID: storeID, Username: "admin"})
 
 	categories := []model.Category{
 		{StoreID: storeID, Name: "메인", SortOrder: 1},
@@ -27,20 +25,12 @@ func Seed(db *gorm.DB) error {
 		{StoreID: storeID, Name: "음료", SortOrder: 3},
 	}
 	for i := range categories {
-		if err := db.FirstOrCreate(&categories[i], model.Category{StoreID: storeID, Name: categories[i].Name}).Error; err != nil {
-			return err
-		}
+		db.FirstOrCreate(&categories[i], model.Category{StoreID: storeID, Name: categories[i].Name})
 	}
 
-	table := model.Table{
-		StoreID:      storeID,
-		TableNumber:  1,
-		PasswordHash: "$2a$10$placeholder",
-		IsActive:     true,
-	}
-	if err := db.FirstOrCreate(&table, model.Table{StoreID: storeID, TableNumber: 1}).Error; err != nil {
-		return err
-	}
+	tblHash, _ := bcrypt.GenerateFromPassword([]byte("1234"), 10)
+	table := model.Table{StoreID: storeID, TableNumber: 1, PasswordHash: string(tblHash), IsActive: true}
+	db.FirstOrCreate(&table, model.Table{StoreID: storeID, TableNumber: 1})
 
 	menus := []model.Menu{
 		{StoreID: storeID, CategoryID: categories[0].ID, Name: "김치찌개", Price: 9000, IsAvailable: true, SortOrder: 1},
@@ -49,9 +39,7 @@ func Seed(db *gorm.DB) error {
 		{StoreID: storeID, CategoryID: categories[2].ID, Name: "콜라", Price: 2000, IsAvailable: true, SortOrder: 1},
 	}
 	for i := range menus {
-		if err := db.FirstOrCreate(&menus[i], model.Menu{StoreID: storeID, Name: menus[i].Name}).Error; err != nil {
-			return err
-		}
+		db.FirstOrCreate(&menus[i], model.Menu{StoreID: storeID, Name: menus[i].Name})
 	}
 
 	return nil

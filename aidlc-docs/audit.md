@@ -242,3 +242,11 @@ AI-DLC 워크플로우를 시작해봅시다."
 **Context**: CONSTRUCTION - Unit 2: Backend API - Code Generation (TDD)
 
 ---
+
+## Unit 2: Backend API - Code Generation Step 0~4 Complete
+**Timestamp**: 2026-02-25T15:00:39+09:00
+**User Input**: "바로 가자"
+**AI Response**: Step 0~4 실행. Admin 모델 추가, Store에서 admin 컬럼 제거, 5개 서비스 구현, 2개 미들웨어, 5개 핸들러, main.go 라우터 설정. 컴파일 성공 + 기존 23개 테스트 PASS. Store 테스트에서 FindByIDAndUsername 제거 (Admin 테이블로 이전).
+**Context**: CONSTRUCTION - Unit 2: Backend API - Code Generation (TDD)
+
+---

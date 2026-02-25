@@ -1,7 +1,7 @@
 package impl
 
 import (
-	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/model"
 	"gorm.io/gorm"
 )
 

@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/kohwg/gowoopi/backend/internal/model"
-	"github.com/kohwg/gowoopi/backend/internal/testutil"
+	"github.com/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/testutil"
 )
 
 func TestTableRepository_Create(t *testing.T) {
@@ -13,7 +13,7 @@ func TestTableRepository_Create(t *testing.T) {
 	repo := NewTableRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	defer testutil.CleanupTables(t, db, "tables", "stores")
 
 	tbl := &model.Table{StoreID: storeID, TableNumber: 1, PasswordHash: "hash", IsActive: true}
@@ -30,7 +30,7 @@ func TestTableRepository_FindByStoreAndNumber(t *testing.T) {
 	repo := NewTableRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	db.Create(&model.Table{StoreID: storeID, TableNumber: 5, PasswordHash: "hash", IsActive: true})
 	defer testutil.CleanupTables(t, db, "tables", "stores")
 
