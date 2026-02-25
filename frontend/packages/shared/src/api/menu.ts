@@ -12,7 +12,7 @@ export function useMenus(storeId: string) {
     queryKey: menuKeys.byStore(storeId),
     queryFn: async (): Promise<Menu[]> => {
       const res = await getApiClient().get('/api/customer/menus');
-      return res.data.menus;
+      return res.data ?? [];
     },
     enabled: !!storeId,
   });
