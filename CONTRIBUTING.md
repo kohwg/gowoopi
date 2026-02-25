@@ -50,7 +50,8 @@ To submit:
 1. Fork the repository
 2. Make your changes (keep them focused)
 3. Use clear commit messages following [conventional commits](https://www.conventionalcommits.org/) (e.g., `feat:`, `fix:`, `docs:`)
-4. Submit the PR and respond to feedback
+4. Run `./scripts/setup-hooks.sh` to enable commit message validation
+5. Submit the PR and respond to feedback
 
 ## Code of Conduct
 
