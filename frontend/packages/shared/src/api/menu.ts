@@ -12,7 +12,21 @@ export function useMenus(storeId: string) {
     queryKey: menuKeys.byStore(storeId),
     queryFn: async (): Promise<Menu[]> => {
       const res = await getApiClient().get('/api/customer/menus');
-      return res.data ?? [];
+      const data = res.data ?? [];
+      return data.map((m: Record<string, unknown>) => ({
+        id: m.ID,
+        storeId: m.StoreID,
+        categoryId: m.CategoryID,
+        name: m.Name,
+        price: m.Price,
+        description: m.Description,
+        imageUrl: m.ImageURL,
+        displayOrder: m.SortOrder,
+        category: m.Category ? {
+          id: (m.Category as Record<string, unknown>).ID,
+          name: (m.Category as Record<string, unknown>).Name,
+        } : undefined,
+      }));
     },
     enabled: !!storeId,
   });
