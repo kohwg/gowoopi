@@ -3,7 +3,7 @@ package service
 import (
 	"sync"
 
-	"github.com/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/model"
 )
 
 type sseManager struct {

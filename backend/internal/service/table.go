@@ -3,8 +3,8 @@ package service
 import (
 	"time"
 
-	"github.com/gowoopi/backend/internal/model"
-	"github.com/gowoopi/backend/internal/repository"
+	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 

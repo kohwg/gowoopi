@@ -2,8 +2,8 @@ package service
 
 import (
 	"github.com/google/uuid"
-	"github.com/gowoopi/backend/internal/model"
-	"github.com/gowoopi/backend/internal/repository"
+	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/repository"
 )
 
 type orderService struct {

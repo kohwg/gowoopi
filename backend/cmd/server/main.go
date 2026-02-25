@@ -7,11 +7,11 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/gowoopi/backend/internal/database"
-	"github.com/gowoopi/backend/internal/handler"
-	"github.com/gowoopi/backend/internal/middleware"
-	"github.com/gowoopi/backend/internal/repository/impl"
-	"github.com/gowoopi/backend/internal/service"
+	"github.com/kohwg/gowoopi/backend/internal/database"
+	"github.com/kohwg/gowoopi/backend/internal/handler"
+	"github.com/kohwg/gowoopi/backend/internal/middleware"
+	"github.com/kohwg/gowoopi/backend/internal/repository/impl"
+	"github.com/kohwg/gowoopi/backend/internal/service"
 )
 
 func main() {

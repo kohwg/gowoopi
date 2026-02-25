@@ -3,7 +3,7 @@ package service
 import (
 	"time"
 
-	"github.com/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/model"
 )
 
 type AuthService interface {
