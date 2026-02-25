@@ -105,6 +105,17 @@ tasks:
       - task: infra:up
       - echo "Run 'task backend:run' and 'task frontend:dev' in separate terminals"
 
+  dev:all:
+    desc: Start DB, backend, and frontend (all in one)
+    deps: [infra:up]
+    cmds:
+      - |
+        trap 'kill $(jobs -p) 2>/dev/null' EXIT
+        cd backend && DB_HOST={{.DB_HOST}} DB_PORT={{.DB_PORT}} DB_USER={{.DB_USER}} DB_PASSWORD={{.DB_PASSWORD}} DB_NAME={{.DB_NAME}} go run cmd/server/main.go &
+        sleep 2
+        cd frontend && pnpm dev &
+        wait
+
   test:
     desc: Run all tests
     cmds:
