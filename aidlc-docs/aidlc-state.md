@@ -47,8 +47,8 @@
 - [x] Code Generation - TDD (COMPLETED - 2026-02-25T16:00:00+09:00)
 
 ### Unit 4: Admin App
-- [ ] Functional Design
-- [ ] Code Generation - TDD
+- [x] Functional Design (COMPLETED - 2026-02-25T15:54:52+09:00)
+- [x] Code Generation - TDD (COMPLETED - 2026-02-25T16:15:00+09:00)
 
 ### CONSTRUCTION PHASE
 - [ ] Functional Design (EXECUTE, per-unit)

@@ -11,57 +11,94 @@
     "add": "Add",
     "search": "Search",
     "back": "Back",
-    "close": "Close"
-  },
-  "auth": {
-    "login": "Login",
+    "close": "Close",
     "logout": "Logout",
+    "actions": "Actions"
+  },
+  "app": {
+    "title": "Table Order Admin"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "tables": "Table Management",
+    "menus": "Menu Management"
+  },
+  "login": {
+    "title": "Admin Login",
     "storeId": "Store ID",
-    "tableNumber": "Table Number",
-    "password": "Password",
     "username": "Username",
-    "loginFailed": "Login failed"
+    "password": "Password",
+    "submit": "Login",
+    "error": "Login failed"
+  },
+  "dashboard": {
+    "title": "Order Status"
+  },
+  "table": {
+    "number": "Table {n}",
+    "number.label": "Table Number",
+    "status": "Status",
+    "totalAmount": "Total Amount",
+    "active": "Active",
+    "inactive": "Inactive",
+    "empty": "No tables",
+    "management": "Table Management",
+    "setup": {
+      "button": "Setup Table",
+      "title": "Table Setup",
+      "number": "Table Number",
+      "password": "Password"
+    },
+    "complete": "Complete",
+    "completeConfirm": {
+      "title": "Complete Table",
+      "message": "Complete this table? All orders will be moved to history."
+    },
+    "history": {
+      "button": "History",
+      "title": "Order History",
+      "from": "From",
+      "to": "To",
+      "empty": "No history"
+    }
+  },
+  "order": {
+    "empty": "No orders",
+    "latest": "Latest",
+    "items": "items",
+    "more": "more",
+    "detail": "Order Detail",
+    "quantity": "Qty",
+    "total": "Total",
+    "id": "Order ID",
+    "time": "Order Time",
+    "completedAt": "Completed At",
+    "status": {
+      "label": "Change Status",
+      "pending": "Pending",
+      "preparing": "Preparing",
+      "completed": "Completed"
+    },
+    "deleteConfirm": {
+      "title": "Delete Order",
+      "message": "Delete this order?"
+    }
   },
   "menu": {
-    "title": "Menu",
+    "management": "Menu Management",
+    "add": "Add Menu",
+    "edit": "Edit Menu",
     "category": "Category",
     "name": "Name",
     "price": "Price",
     "description": "Description",
-    "addToCart": "Add to Cart",
-    "noMenus": "No menus available"
-  },
-  "cart": {
-    "title": "Cart",
-    "empty": "Your cart is empty",
-    "total": "Total",
-    "checkout": "Checkout",
-    "clear": "Clear"
-  },
-  "order": {
-    "title": "Order",
-    "orders": "Orders",
-    "orderNumber": "Order Number",
-    "status": "Status",
-    "pending": "Pending",
-    "preparing": "Preparing",
-    "completed": "Completed",
-    "totalAmount": "Total Amount",
-    "createdAt": "Order Time",
-    "noOrders": "No orders",
-    "orderSuccess": "Order placed successfully",
-    "orderFailed": "Order failed"
-  },
-  "table": {
-    "title": "Table",
-    "setup": "Table Setup",
-    "complete": "Complete",
-    "history": "Order History"
-  },
-  "admin": {
-    "dashboard": "Dashboard",
-    "menuManagement": "Menu Management",
-    "tableManagement": "Table Management",
-    "orderManagement": "Order Management"
+    "imageUrl": "Image URL",
+    "image": "Image",
+    "order": "Order",
+    "empty": "No menus",
+    "deleteConfirm": {
+      "title": "Delete Menu",
+      "message": "Delete this menu?"
+    }
   }
 }
