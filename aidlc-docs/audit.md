@@ -234,3 +234,11 @@ AI-DLC 워크플로우를 시작해봅시다."
 **Context**: CONSTRUCTION - Unit 1: Database - Code Generation (TDD)
 
 ---
+
+## Unit 2: Backend API - NFR + TDD Planning Complete
+**Timestamp**: 2026-02-25T14:56:18+09:00
+**User Input**: "continue"
+**AI Response**: Functional Design 승인. NFR Requirements + NFR Design 생성. TDD 계획 (contracts + tdd-code-generation-plan) 생성. Step 0부터 코드 생성 시작.
+**Context**: CONSTRUCTION - Unit 2: Backend API - Code Generation (TDD)
+
+---
