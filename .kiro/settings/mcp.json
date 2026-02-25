@@ -13,6 +13,10 @@
     "heroui-react": {
       "command": "npx",
       "args": ["-y", "@heroui/react-mcp@latest"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
     }
   }
 }
