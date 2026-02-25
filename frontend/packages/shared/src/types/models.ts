@@ -8,14 +8,15 @@ export interface Table {
   id: number;
   storeId: string;
   tableNumber: number;
-  currentSessionId?: string;
+  isActive: boolean;
 }
 
 export interface Session {
   id: string;
   tableId: number;
-  startTime: string;
-  endTime?: string;
+  storeId: string;
+  startedAt: string;
+  endedAt?: string;
   isActive: boolean;
 }
 
@@ -23,7 +24,7 @@ export interface Category {
   id: number;
   storeId: string;
   name: string;
-  displayOrder: number;
+  sortOrder: number;
 }
 
 export interface Menu {
@@ -34,7 +35,9 @@ export interface Menu {
   price: number;
   description?: string;
   imageUrl?: string;
-  displayOrder: number;
+  isAvailable: boolean;
+  sortOrder: number;
+  category?: { id: number; name: string };
 }
 
 export interface OrderItem {
@@ -43,10 +46,11 @@ export interface OrderItem {
   menuId: number;
   menuName: string;
   quantity: number;
-  unitPrice: number;
+  price: number;
+  subtotal: number;
 }
 
-export type OrderStatus = 'pending' | 'preparing' | 'completed';
+export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'PREPARING' | 'COMPLETED';
 
 export interface Order {
   id: string;

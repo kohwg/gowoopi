@@ -26,7 +26,7 @@ export default function HomePage() {
     const catMap = new Map<number, Category>();
     menus.forEach((m) => {
       if (!catMap.has(m.categoryId)) {
-        catMap.set(m.categoryId, { id: m.categoryId, storeId: m.storeId, name: `Category ${m.categoryId}`, displayOrder: m.categoryId });
+        catMap.set(m.categoryId, { id: m.categoryId, storeId: m.storeId, name: m.category?.name || `Category ${m.categoryId}`, sortOrder: m.categoryId });
       }
     });
     return Array.from(catMap.values());
@@ -49,7 +49,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen pb-20">
       <header className="sticky top-0 bg-background z-40 p-4 border-b flex justify-between items-center">
-        <h1 className="text-xl font-bold">{auth?.storeName}</h1>
+        <h1 className="text-xl font-bold">{auth?.storeId}</h1>
         <div className="flex gap-2">
           <Button variant="light" size="sm" onPress={() => router.push('/orders')}>
             {t('order.orders')}

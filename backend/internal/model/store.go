@@ -6,9 +6,9 @@ import (
 )
 
 type Store struct {
-	ID              string `gorm:"type:char(36);primaryKey"`
-	Name            string `gorm:"type:varchar(100);not null"`
-	DefaultLanguage string `gorm:"type:varchar(5);not null;default:'ko'"`
+	ID              string `gorm:"type:char(36);primaryKey" json:"id"`
+	Name            string `gorm:"type:varchar(100);not null" json:"name"`
+	DefaultLanguage string `gorm:"type:varchar(5);not null;default:'ko'" json:"defaultLanguage"`
 	BaseModel
 }
 

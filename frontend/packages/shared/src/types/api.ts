@@ -14,13 +14,10 @@ export interface AdminLoginRequest {
 }
 
 export interface AuthResponse {
-  storeId: string;
-  storeName: string;
   role: 'customer' | 'admin';
-  tableId?: number;
-  tableNumber?: number;
-  sessionId?: string;
-  adminId?: number;
+  storeId: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 // Menu
@@ -30,6 +27,7 @@ export interface MenuCreateRequest {
   price: number;
   description?: string;
   imageUrl?: string;
+  isAvailable?: boolean;
 }
 
 export interface MenuUpdateRequest {
@@ -38,11 +36,12 @@ export interface MenuUpdateRequest {
   price?: number;
   description?: string;
   imageUrl?: string;
+  isAvailable?: boolean;
 }
 
 export interface MenuOrderItem {
   id: number;
-  displayOrder: number;
+  sortOrder: number;
 }
 
 // Order
@@ -72,13 +71,12 @@ export interface TableHistoryQuery {
 
 // Error
 export interface ErrorDetail {
-  field: string;
+  code: string;
   message: string;
 }
 
 export interface ErrorResponse {
-  error: string;
-  details?: ErrorDetail[];
+  error: ErrorDetail;
 }
 
 // API Responses

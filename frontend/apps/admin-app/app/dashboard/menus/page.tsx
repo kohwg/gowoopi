@@ -36,7 +36,7 @@ export default function MenusPage() {
     if (!selectedCategory) return [];
     const filtered = (menus || [])
       .filter((m) => m.categoryId === selectedCategory)
-      .sort((a, b) => a.displayOrder - b.displayOrder);
+      .sort((a, b) => a.sortOrder - b.sortOrder);
     console.log('filteredMenus:', filtered);
     return filtered;
   }, [menus, selectedCategory]);
@@ -58,16 +58,16 @@ export default function MenusPage() {
 
   const handleMoveUp = async (menu: Menu, index: number) => {
     if (index === 0) return;
-    const items = filteredMenus.map((m, i) => ({ id: m.id, displayOrder: i }));
+    const items = filteredMenus.map((m, i) => ({ id: m.id, sortOrder: i }));
     [items[index - 1], items[index]] = [items[index], items[index - 1]];
-    await updateOrder.mutateAsync(items.map((item, i) => ({ id: item.id, displayOrder: i })));
+    await updateOrder.mutateAsync(items.map((item, i) => ({ id: item.id, sortOrder: i })));
   };
 
   const handleMoveDown = async (menu: Menu, index: number) => {
     if (index === filteredMenus.length - 1) return;
-    const items = filteredMenus.map((m, i) => ({ id: m.id, displayOrder: i }));
+    const items = filteredMenus.map((m, i) => ({ id: m.id, sortOrder: i }));
     [items[index], items[index + 1]] = [items[index + 1], items[index]];
-    await updateOrder.mutateAsync(items.map((item, i) => ({ id: item.id, displayOrder: i })));
+    await updateOrder.mutateAsync(items.map((item, i) => ({ id: item.id, sortOrder: i })));
   };
 
   if (isLoading) {

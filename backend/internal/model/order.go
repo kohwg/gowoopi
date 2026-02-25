@@ -39,18 +39,19 @@ func (s OrderStatus) CanTransitionTo(next OrderStatus) bool {
 }
 
 type Order struct {
-	ID          string      `gorm:"type:char(36);primaryKey"`
-	SessionID   string      `gorm:"type:char(36);not null;index"`
-	StoreID     string      `gorm:"type:char(36);not null;index"`
-	TableID     uint        `gorm:"not null"`
-	Status      OrderStatus `gorm:"type:enum('PENDING','CONFIRMED','PREPARING','COMPLETED');not null;default:'PENDING'"`
-	TotalAmount uint        `gorm:"not null;default:0"`
-	BaseModel
-
-	Session TableSession `gorm:"foreignKey:SessionID"`
-	Store   Store        `gorm:"foreignKey:StoreID"`
-	Table   Table        `gorm:"foreignKey:TableID"`
-	Items   []OrderItem  `gorm:"foreignKey:OrderID"`
+	ID          string      `gorm:"type:char(36);primaryKey" json:"id"`
+	SessionID   string      `gorm:"type:char(36);not null;index" json:"sessionId"`
+	StoreID     string      `gorm:"type:char(36);not null;index" json:"storeId"`
+	TableID     uint        `gorm:"not null" json:"tableId"`
+	Status      OrderStatus `gorm:"type:enum('PENDING','CONFIRMED','PREPARING','COMPLETED');not null;default:'PENDING'" json:"status"`
+	TotalAmount uint        `gorm:"not null;default:0" json:"totalAmount"`
+	CreatedAt   time.Time   `json:"createdAt"`
+	UpdatedAt   time.Time   `json:"updatedAt"`
+	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"`
+	Session     TableSession `gorm:"foreignKey:SessionID" json:"-"`
+	Store       Store        `gorm:"foreignKey:StoreID" json:"-"`
+	Table       Table        `gorm:"foreignKey:TableID" json:"-"`
+	Items       []OrderItem  `gorm:"foreignKey:OrderID" json:"items"`
 }
 
 func (o *Order) BeforeCreate(tx *gorm.DB) error {
@@ -61,17 +62,16 @@ func (o *Order) BeforeCreate(tx *gorm.DB) error {
 }
 
 type OrderItem struct {
-	ID        uint      `gorm:"primaryKey;autoIncrement"`
-	OrderID   string    `gorm:"type:char(36);not null;index"`
-	MenuID    uint      `gorm:"not null"`
-	MenuName  string    `gorm:"type:varchar(100);not null"`
-	Price     uint      `gorm:"not null"`
-	Quantity  uint      `gorm:"not null"`
-	Subtotal  uint      `gorm:"not null"`
-	CreatedAt time.Time
-
-	Order Order `gorm:"foreignKey:OrderID"`
-	Menu  Menu  `gorm:"foreignKey:MenuID"`
+	ID        uint      `gorm:"primaryKey;autoIncrement" json:"id"`
+	OrderID   string    `gorm:"type:char(36);not null;index" json:"orderId"`
+	MenuID    uint      `gorm:"not null" json:"menuId"`
+	MenuName  string    `gorm:"type:varchar(100);not null" json:"menuName"`
+	Price     uint      `gorm:"not null" json:"price"`
+	Quantity  uint      `gorm:"not null" json:"quantity"`
+	Subtotal  uint      `gorm:"not null" json:"subtotal"`
+	CreatedAt time.Time `json:"createdAt"`
+	Order     Order     `gorm:"foreignKey:OrderID" json:"-"`
+	Menu      Menu      `gorm:"foreignKey:MenuID" json:"-"`
 }
 
 // Validate - 주문 항목 유효성 검증

@@ -13,7 +13,7 @@ interface OrderDetailModalProps {
   onDelete: () => void;
 }
 
-const statuses: OrderStatus[] = ['pending', 'preparing', 'completed'];
+const statuses: OrderStatus[] = ['PENDING', 'CONFIRMED', 'PREPARING', 'COMPLETED'];
 
 export function OrderDetailModal({ order, isOpen, onClose, onStatusChange, onDelete }: OrderDetailModalProps) {
   const { t } = useTranslation();
@@ -39,7 +39,7 @@ export function OrderDetailModal({ order, isOpen, onClose, onStatusChange, onDel
                 <TableRow key={item.id}>
                   <TableCell>{item.menuName}</TableCell>
                   <TableCell>{item.quantity}</TableCell>
-                  <TableCell>₩{(item.unitPrice * item.quantity).toLocaleString()}</TableCell>
+                  <TableCell>₩{item.subtotal.toLocaleString()}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

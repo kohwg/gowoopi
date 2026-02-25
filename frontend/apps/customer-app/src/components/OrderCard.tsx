@@ -3,10 +3,11 @@
 import { Card, CardBody, Chip } from '@heroui/react';
 import { useTranslation, type Order, type OrderStatus } from '@gowoopi/shared';
 
-const statusColorMap: Record<OrderStatus, 'warning' | 'primary' | 'success'> = {
-  pending: 'warning',
-  preparing: 'primary',
-  completed: 'success',
+const statusColorMap: Record<OrderStatus, 'warning' | 'primary' | 'success' | 'secondary'> = {
+  PENDING: 'warning',
+  CONFIRMED: 'secondary',
+  PREPARING: 'primary',
+  COMPLETED: 'success',
 };
 
 interface OrderCardProps {
@@ -34,7 +35,7 @@ export function OrderCard({ order }: OrderCardProps) {
           {order.items.map((item) => (
             <div key={item.id} className="flex justify-between text-sm">
               <span>{item.menuName} x {item.quantity}</span>
-              <span>₩{(item.unitPrice * item.quantity).toLocaleString()}</span>
+              <span>₩{item.subtotal.toLocaleString()}</span>
             </div>
           ))}
         </div>

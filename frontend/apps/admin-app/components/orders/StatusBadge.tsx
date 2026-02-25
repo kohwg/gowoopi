@@ -4,10 +4,11 @@ import { Chip } from '@heroui/react';
 import type { OrderStatus } from '@gowoopi/shared';
 import { useTranslation } from '@gowoopi/shared';
 
-const statusConfig: Record<OrderStatus, { color: 'warning' | 'primary' | 'success'; labelKey: string }> = {
-  pending: { color: 'warning', labelKey: 'order.status.pending' },
-  preparing: { color: 'primary', labelKey: 'order.status.preparing' },
-  completed: { color: 'success', labelKey: 'order.status.completed' },
+const statusConfig: Record<OrderStatus, { color: 'warning' | 'primary' | 'success' | 'secondary'; labelKey: string }> = {
+  PENDING: { color: 'warning', labelKey: 'order.status.pending' },
+  CONFIRMED: { color: 'secondary', labelKey: 'order.status.confirmed' },
+  PREPARING: { color: 'primary', labelKey: 'order.status.preparing' },
+  COMPLETED: { color: 'success', labelKey: 'order.status.completed' },
 };
 
 interface StatusBadgeProps {
