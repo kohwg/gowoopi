@@ -55,7 +55,7 @@ export function OrderDetailModal({ order, isOpen, onClose, onStatusChange, onDel
             className="mt-4"
           >
             {statuses.map((s) => (
-              <SelectItem key={s}>{t(`order.status.${s}`)}</SelectItem>
+              <SelectItem key={s}>{t(`order.status.${s.toLowerCase()}`)}</SelectItem>
             ))}
           </Select>
         </ModalBody>
