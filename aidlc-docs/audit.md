@@ -178,3 +178,59 @@ AI-DLC 워크플로우를 시작해봅시다."
 **Context**: INCEPTION → CONSTRUCTION - Unit 1: Database - Functional Design
 
 ---
+
+## Unit 1: Database - Functional Design Complete
+**Timestamp**: 2026-02-25T14:26:12+09:00
+**User Input**: "고고"
+**AI Response**: 답변 확인 (B:4단계 상태, B:별도 Category 테이블, A:Soft Delete, A:GORM AutoMigrate). 8개 엔티티 정의. 3개 산출물 생성 (domain-entities.md, business-rules.md, business-logic-model.md). Category 테이블 추가됨.
+**Context**: CONSTRUCTION - Unit 1: Database - Functional Design
+
+---
+
+## Unit 1: Database - Functional Design Approved, NFR Requirements Started
+**Timestamp**: 2026-02-25T14:30:52+09:00
+**User Input**: "잘했어 굿"
+**AI Response**: Functional Design 승인 (ID 전략 A 유지). NFR Requirements 시작. 3개 질문 생성.
+**Context**: CONSTRUCTION - Unit 1: Database - NFR Requirements
+
+---
+
+## Unit 1: Database - NFR Requirements Complete
+**Timestamp**: 2026-02-25T14:32:17+09:00
+**User Input**: "굿"
+**AI Response**: 답변 확인 (MySQL 8.0, utf8mb4_unicode_ci, 권장 커넥션 풀). 2개 산출물 생성 (nfr-requirements.md, tech-stack-decisions.md).
+**Context**: CONSTRUCTION - Unit 1: Database - NFR Requirements
+
+---
+
+## Unit 1: Database - NFR Requirements Approved, NFR Design Complete
+**Timestamp**: 2026-02-25T14:33:54+09:00
+**User Input**: "continue"
+**AI Response**: NFR Requirements 승인. NFR Design 추가 질문 없이 바로 산출물 생성 (nfr-design-patterns.md, logical-components.md). 성능/보안/무결성/가용성 패턴 정의.
+**Context**: CONSTRUCTION - Unit 1: Database - NFR Design
+
+---
+
+## Unit 1: Database - NFR Design Approved, Code Generation Starting
+**Timestamp**: 2026-02-25T14:35:06+09:00
+**User Input**: "approve"
+**AI Response**: NFR Design 승인. Code Generation TDD 선택 질문 제시.
+**Context**: CONSTRUCTION - Unit 1: Database - Code Generation
+
+---
+
+## Unit 1: Database - TDD Code Generation Planning
+**Timestamp**: 2026-02-25T14:35:33+09:00
+**User Input**: "A"
+**AI Response**: TDD 선택. 3개 TDD 계획 파일 생성 (contracts.md, test-plan.md, tdd-code-generation-plan.md). 25개 테스트 케이스, 4 Plan Steps.
+**Context**: CONSTRUCTION - Unit 1: Database - Code Generation (TDD Planning)
+
+---
+
+## Unit 1: Database - TDD Code Generation Complete
+**Timestamp**: 2026-02-25T14:38:31+09:00
+**User Input**: "Approve & Start TDD"
+**AI Response**: TDD 계획 승인. Step 0~4 실행 완료. 21개 파일 생성, 25개 테스트 케이스. Go 미설치 상태 - 설치 후 컴파일/테스트 실행 필요.
+**Context**: CONSTRUCTION - Unit 1: Database - Code Generation (TDD)
+
+---

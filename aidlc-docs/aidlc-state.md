@@ -29,10 +29,10 @@
 ## 🟢 CONSTRUCTION PHASE
 
 ### Unit 1: Database
-- [ ] Functional Design (IN PROGRESS)
-- [ ] NFR Requirements
-- [ ] NFR Design
-- [ ] Code Generation
+- [x] Functional Design (COMPLETED - 2026-02-25T14:30:52+09:00)
+- [x] NFR Requirements (COMPLETED - 2026-02-25T14:32:17+09:00)
+- [x] NFR Design (COMPLETED - 2026-02-25T14:33:54+09:00)
+- [x] Code Generation - TDD (COMPLETED - 2026-02-25T14:38:31+09:00)
 
 ### CONSTRUCTION PHASE
 - [ ] Functional Design (EXECUTE, per-unit)
