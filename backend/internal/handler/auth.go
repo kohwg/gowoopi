@@ -39,6 +39,8 @@ func (h *AuthHandler) CustomerLogin(c *gin.Context) {
 		return
 	}
 	setTokenCookies(c, tokens)
+	resp.AccessToken = tokens.AccessToken
+	resp.RefreshToken = tokens.RefreshToken
 	c.JSON(http.StatusOK, resp)
 }
 
@@ -65,6 +67,8 @@ func (h *AuthHandler) AdminLogin(c *gin.Context) {
 		return
 	}
 	setTokenCookies(c, tokens)
+	resp.AccessToken = tokens.AccessToken
+	resp.RefreshToken = tokens.RefreshToken
 	c.JSON(http.StatusOK, resp)
 }
 

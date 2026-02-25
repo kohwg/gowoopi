@@ -15,8 +15,10 @@ type AdminLoginRequest struct {
 }
 
 type AuthResponse struct {
-	Role    string `json:"role"`
-	StoreID string `json:"store_id"`
+	Role         string `json:"role"`
+	StoreID      string `json:"store_id"`
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type TokenPair struct {

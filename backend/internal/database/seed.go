@@ -7,7 +7,7 @@ import (
 )
 
 func Seed(db *gorm.DB) error {
-	storeID := "store-001"
+	storeID := "00000000-0000-0000-0000-000000000001"
 
 	store := model.Store{ID: storeID, Name: "테스트 매장", DefaultLanguage: "ko"}
 	if err := db.FirstOrCreate(&store, model.Store{ID: storeID}).Error; err != nil {
