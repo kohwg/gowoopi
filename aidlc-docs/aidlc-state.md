@@ -34,6 +34,12 @@
 - [x] NFR Design (COMPLETED - 2026-02-25T14:33:54+09:00)
 - [x] Code Generation - TDD (COMPLETED - 2026-02-25T14:38:31+09:00)
 
+### Unit 2: Backend API
+- [x] Functional Design (COMPLETED - 2026-02-25T14:53:58+09:00)
+- [x] NFR Requirements (COMPLETED - 2026-02-25T14:56:18+09:00)
+- [x] NFR Design (COMPLETED - 2026-02-25T14:56:18+09:00)
+- [ ] Code Generation - TDD (IN PROGRESS)
+
 ### CONSTRUCTION PHASE
 - [ ] Functional Design (EXECUTE, per-unit)
 - [ ] NFR Requirements (EXECUTE, per-unit)
