@@ -54,7 +54,7 @@ func TestOrderRepository_FindBySession(t *testing.T) {
 	defer cleanup()
 
 	order := &model.Order{ID: uuid.New().String(), SessionID: sessionID, StoreID: storeID, TableID: tableID, Status: model.OrderStatusPending}
-	repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
+	_ = repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
 
 	orders, err := repo.FindBySession(sessionID)
 	if err != nil {
@@ -73,7 +73,7 @@ func TestOrderRepository_FindByStore(t *testing.T) {
 	defer cleanup()
 
 	order := &model.Order{ID: uuid.New().String(), SessionID: sessionID, StoreID: storeID, TableID: tableID, Status: model.OrderStatusPending}
-	repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
+	_ = repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
 
 	orders, err := repo.FindByStore(storeID)
 	if err != nil {
@@ -89,7 +89,7 @@ func TestOrderRepository_UpdateStatus(t *testing.T) {
 	defer cleanup()
 
 	order := &model.Order{ID: uuid.New().String(), SessionID: sessionID, StoreID: storeID, TableID: tableID, Status: model.OrderStatusPending}
-	repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
+	_ = repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
 
 	if err := repo.UpdateStatus(order.ID, model.OrderStatusConfirmed); err != nil {
 		t.Fatalf("UpdateStatus() error = %v", err)
@@ -106,7 +106,7 @@ func TestOrderRepository_Delete_SoftDelete(t *testing.T) {
 	defer cleanup()
 
 	order := &model.Order{ID: uuid.New().String(), SessionID: sessionID, StoreID: storeID, TableID: tableID, Status: model.OrderStatusPending}
-	repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
+	_ = repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
 
 	if err := repo.Delete(order.ID); err != nil {
 		t.Fatalf("Delete() error = %v", err)
@@ -123,7 +123,7 @@ func TestOrderRepository_MoveToHistory(t *testing.T) {
 	defer cleanup()
 
 	order := &model.Order{ID: uuid.New().String(), SessionID: sessionID, StoreID: storeID, TableID: tableID, Status: model.OrderStatusCompleted}
-	repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
+	_ = repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
 
 	if err := repo.MoveToHistory(sessionID); err != nil {
 		t.Fatalf("MoveToHistory() error = %v", err)
@@ -153,8 +153,8 @@ func TestOrderRepository_FindHistory_WithDateFilter(t *testing.T) {
 	defer cleanup()
 
 	order := &model.Order{ID: uuid.New().String(), SessionID: sessionID, StoreID: storeID, TableID: tableID, Status: model.OrderStatusCompleted}
-	repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
-	repo.MoveToHistory(sessionID)
+	_ = repo.Create(order, []model.OrderItem{{MenuID: menuID, MenuName: "김치찌개", Price: 9000, Quantity: 1}})
+	_ = repo.MoveToHistory(sessionID)
 
 	// 미래 날짜 필터 - 결과 없어야 함
 	future := time.Now().Add(24 * time.Hour)

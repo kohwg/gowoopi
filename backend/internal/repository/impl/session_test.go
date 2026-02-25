@@ -40,7 +40,7 @@ func TestSessionRepository_FindActiveByTable(t *testing.T) {
 	defer cleanup()
 
 	session := &model.TableSession{ID: uuid.New().String(), TableID: tableID, StoreID: storeID, StartedAt: time.Now(), IsActive: true}
-	repo.Create(session)
+	_ = repo.Create(session)
 
 	found, err := repo.FindActiveByTable(tableID)
 	if err != nil {
@@ -56,7 +56,7 @@ func TestSessionRepository_End(t *testing.T) {
 	defer cleanup()
 
 	session := &model.TableSession{ID: uuid.New().String(), TableID: tableID, StoreID: storeID, StartedAt: time.Now(), IsActive: true}
-	repo.Create(session)
+	_ = repo.Create(session)
 
 	if err := repo.End(session.ID); err != nil {
 		t.Fatalf("End() error = %v", err)
