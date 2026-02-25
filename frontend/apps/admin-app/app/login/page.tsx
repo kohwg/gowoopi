@@ -35,17 +35,19 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold">{t('login.title')}</h1>
         </CardHeader>
         <CardBody>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4" autoComplete="off">
             <Input
               label={t('login.storeId')}
               value={storeId}
               onChange={(e) => setStoreId(e.target.value)}
+              autoComplete="off"
               required
             />
             <Input
               label={t('login.username')}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              autoComplete="off"
               required
             />
             <Input
@@ -53,6 +55,7 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="off"
               required
             />
             {error && <p className="text-red-500 text-sm">{error}</p>}
