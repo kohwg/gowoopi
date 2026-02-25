@@ -1,7 +1,7 @@
 -- Seed data for gowoopi
 -- Store
-INSERT IGNORE INTO stores (id, name, admin_username, admin_password_hash, default_language, created_at, updated_at) 
-VALUES ('00000000-0000-0000-0000-000000000001', '황금치킨', 'admin', '', 'ko', NOW(), NOW());
+INSERT IGNORE INTO stores (id, name, default_language, created_at, updated_at) 
+VALUES ('00000000-0000-0000-0000-000000000001', '황금치킨', 'ko', NOW(), NOW());
 
 -- Admin (password: admin123)
 INSERT IGNORE INTO admins (store_id, username, password_hash, name, created_at, updated_at) 

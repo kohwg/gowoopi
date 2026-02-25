@@ -1,4 +1,5 @@
 import axios, { type AxiosInstance } from 'axios';
+import { getAuth } from '../auth/storage';
 
 let apiClient: AxiosInstance | null = null;
 
@@ -7,6 +8,15 @@ export function createApiClient(baseURL: string): AxiosInstance {
     baseURL,
     withCredentials: true,
     headers: { 'Content-Type': 'application/json' },
+  });
+
+  // Add auth token to requests
+  apiClient.interceptors.request.use((config) => {
+    const auth = getAuth();
+    if (auth?.accessToken) {
+      config.headers.Authorization = `Bearer ${auth.accessToken}`;
+    }
+    return config;
   });
 
   apiClient.interceptors.response.use(
