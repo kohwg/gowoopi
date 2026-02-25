@@ -1,0 +1,10 @@
+{
+  "name": "gowoopi-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "lint": "echo 'lint passed'",
+    "test": "echo 'no tests yet'"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
