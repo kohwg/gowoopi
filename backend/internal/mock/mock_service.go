@@ -13,7 +13,7 @@ import (
 	reflect "reflect"
 	time "time"
 
-	model "github.com/gowoopi/backend/internal/model"
+	model "github.com/kohwg/gowoopi/backend/internal/model"
 	gomock "go.uber.org/mock/gomock"
 )
 
