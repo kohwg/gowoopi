@@ -102,6 +102,7 @@ func main() {
 
 	// Admin routes
 	admin := auth.Group("/api/admin", middleware.RequireRole("admin"))
+	admin.GET("/menus", menuH.GetMenus)
 	admin.GET("/orders/stream", sseH.StreamOrders)
 	admin.GET("/orders", orderH.GetAdminOrders)
 	admin.PATCH("/orders/:id/status", orderH.UpdateOrderStatus)
