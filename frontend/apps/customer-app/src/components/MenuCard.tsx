@@ -18,7 +18,10 @@ export function MenuCard({ menu }: MenuCardProps) {
         <Image
           alt={menu.name}
           src={menu.imageUrl}
-          className="w-full h-40 object-cover"
+          className="w-full max-h-48 object-cover"
+          classNames={{
+            wrapper: "w-full !max-w-full h-48"
+          }}
         />
       )}
       <CardBody className="p-3">
