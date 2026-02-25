@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@heroui/react';
-import { useTranslation, type Locale } from '@gowoopi/shared';
+import { useTranslation } from '@gowoopi/shared';
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useTranslation();

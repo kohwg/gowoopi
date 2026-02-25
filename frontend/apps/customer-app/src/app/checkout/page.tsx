@@ -2,13 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { Card, CardBody, CardFooter, Button } from '@heroui/react';
-import { useTranslation, useCreateOrder, useAuth } from '@gowoopi/shared';
+import { useTranslation, useCreateOrder } from '@gowoopi/shared';
 import { useCartStore } from '@/stores/cart';
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { t } = useTranslation();
-  const { auth } = useAuth();
   const { items, total, clear } = useCartStore();
   const createOrder = useCreateOrder();
 
