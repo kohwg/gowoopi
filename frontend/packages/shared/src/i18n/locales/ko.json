@@ -15,6 +15,20 @@
     "logout": "로그아웃",
     "actions": "액션"
   },
+  "auth": {
+    "storeId": "매장 ID",
+    "tableNumber": "테이블 번호",
+    "password": "비밀번호",
+    "login": "로그인",
+    "loginFailed": "로그인에 실패했습니다"
+  },
+  "cart": {
+    "title": "장바구니",
+    "empty": "장바구니가 비어있습니다",
+    "total": "합계",
+    "clear": "비우기",
+    "checkout": "주문하기"
+  },
   "app": {
     "title": "테이블오더 관리"
   },
@@ -43,12 +57,7 @@
     "inactive": "비활성",
     "empty": "테이블이 없습니다",
     "management": "테이블 관리",
-    "setup": {
-      "button": "테이블 설정",
-      "title": "테이블 설정",
-      "number": "테이블 번호",
-      "password": "비밀번호"
-    },
+    "setup": "테이블 설정",
     "complete": "이용 완료",
     "completeConfirm": {
       "title": "이용 완료",
@@ -70,9 +79,14 @@
     "detail": "주문 상세",
     "quantity": "수량",
     "total": "총 금액",
+    "totalAmount": "총 금액",
     "id": "주문번호",
     "time": "주문시간",
     "completedAt": "완료시간",
+    "title": "주문 내역",
+    "orders": "주문 목록",
+    "noOrders": "주문이 없습니다",
+    "orderFailed": "주문에 실패했습니다",
     "status": {
       "label": "상태 변경",
       "pending": "대기중",
@@ -96,6 +110,9 @@
     "image": "이미지",
     "order": "순서",
     "empty": "메뉴가 없습니다",
+    "title": "메뉴",
+    "addToCart": "담기",
+    "noMenus": "메뉴가 없습니다",
     "deleteConfirm": {
       "title": "메뉴 삭제",
       "message": "이 메뉴를 삭제하시겠습니까?"

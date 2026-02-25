@@ -10,7 +10,10 @@ export const tableKeys = {
 export function useSetupTable() {
   return useMutation({
     mutationFn: async (data: TableSetupRequest): Promise<{ table: Table; sessionId: string }> => {
-      const res = await getApiClient().post('/api/admin/tables/setup', data);
+      const res = await getApiClient().post('/api/admin/tables/setup', {
+        table_number: data.tableNumber,
+        password: data.password,
+      });
       return res.data;
     },
   });

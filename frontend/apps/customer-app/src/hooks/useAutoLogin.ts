@@ -25,6 +25,7 @@ export function useAutoLogin() {
         onError: () => router.replace('/setup'),
       }
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, storeId, tableNumber, password]);
 
   return { isLoading: customerLogin.isPending, isAuthenticated };

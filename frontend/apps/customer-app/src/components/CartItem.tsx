@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@heroui/react';
-import { useTranslation } from '@gowoopi/shared';
 import type { CartItem } from '@/stores/cart';
 import { useCartStore } from '@/stores/cart';
 

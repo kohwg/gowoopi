@@ -22,7 +22,13 @@ export function useCreateMenu() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: MenuCreateRequest): Promise<Menu> => {
-      const res = await getApiClient().post('/api/admin/menus', data);
+      const res = await getApiClient().post('/api/admin/menus', {
+        category_id: data.categoryId,
+        name: data.name,
+        price: data.price,
+        description: data.description,
+        image_url: data.imageUrl,
+      });
       return res.data;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: menuKeys.all }),
@@ -33,7 +39,13 @@ export function useUpdateMenu() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, data }: { id: number; data: MenuUpdateRequest }): Promise<Menu> => {
-      const res = await getApiClient().put(`/api/admin/menus/${id}`, data);
+      const res = await getApiClient().put(`/api/admin/menus/${id}`, {
+        category_id: data.categoryId,
+        name: data.name,
+        price: data.price,
+        description: data.description,
+        image_url: data.imageUrl,
+      });
       return res.data;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: menuKeys.all }),
@@ -54,7 +66,7 @@ export function useUpdateMenuOrder() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (items: MenuOrderItem[]): Promise<void> => {
-      await getApiClient().patch('/api/admin/menus/order', { items });
+      await getApiClient().patch('/api/admin/menus/order', items.map((i) => ({ id: i.id, sort_order: i.displayOrder })));
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: menuKeys.all }),
   });

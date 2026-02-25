@@ -32,7 +32,9 @@ export function useCreateOrder() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: OrderCreateRequest): Promise<Order> => {
-      const res = await getApiClient().post('/api/customer/orders', data);
+      const res = await getApiClient().post('/api/customer/orders', {
+        items: data.items.map((i) => ({ menu_id: i.menuId, quantity: i.quantity })),
+      });
       return res.data;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: orderKeys.all }),
