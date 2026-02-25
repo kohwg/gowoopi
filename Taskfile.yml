@@ -46,6 +46,12 @@ tasks:
   backend:test:
     desc: Run backend tests
     dir: backend
+    env:
+      TEST_DB_HOST: "{{.DB_HOST}}"
+      TEST_DB_PORT: "{{.DB_PORT}}"
+      TEST_DB_USER: "{{.DB_USER}}"
+      TEST_DB_PASSWORD: "{{.DB_PASSWORD}}"
+      TEST_DB_NAME: "{{.DB_NAME}}"
     cmds:
       - go test -v ./...
 
