@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/kohwg/gowoopi/backend/internal/model"
-	"github.com/kohwg/gowoopi/backend/internal/testutil"
+	"github.com/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/testutil"
 )
 
 func TestCategoryRepository_Create(t *testing.T) {
@@ -13,7 +13,7 @@ func TestCategoryRepository_Create(t *testing.T) {
 	repo := NewCategoryRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	defer testutil.CleanupTables(t, db, "categories", "stores")
 
 	cat := &model.Category{StoreID: storeID, Name: "Main", SortOrder: 1}
@@ -30,7 +30,7 @@ func TestCategoryRepository_FindByStore(t *testing.T) {
 	repo := NewCategoryRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	db.Create(&model.Category{StoreID: storeID, Name: "B", SortOrder: 2})
 	db.Create(&model.Category{StoreID: storeID, Name: "A", SortOrder: 1})
 	defer testutil.CleanupTables(t, db, "categories", "stores")
@@ -52,7 +52,7 @@ func TestCategoryRepository_Delete_SoftDelete(t *testing.T) {
 	repo := NewCategoryRepository(db)
 
 	storeID := uuid.New().String()
-	db.Create(&model.Store{ID: storeID, Name: "Store", AdminUsername: "admin", AdminPasswordHash: "hash"})
+	db.Create(&model.Store{ID: storeID, Name: "Store"})
 	cat := &model.Category{StoreID: storeID, Name: "ToDelete", SortOrder: 1}
 	db.Create(cat)
 	defer testutil.CleanupTables(t, db, "categories", "stores")

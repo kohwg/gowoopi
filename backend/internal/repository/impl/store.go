@@ -1,7 +1,7 @@
 package impl
 
 import (
-	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/model"
 	"gorm.io/gorm"
 )
 
@@ -16,14 +16,6 @@ func NewStoreRepository(db *gorm.DB) *storeRepository {
 func (r *storeRepository) FindByID(id string) (*model.Store, error) {
 	var store model.Store
 	if err := r.db.First(&store, "id = ?", id).Error; err != nil {
-		return nil, err
-	}
-	return &store, nil
-}
-
-func (r *storeRepository) FindByIDAndUsername(id, username string) (*model.Store, error) {
-	var store model.Store
-	if err := r.db.First(&store, "id = ? AND admin_username = ?", id, username).Error; err != nil {
 		return nil, err
 	}
 	return &store, nil

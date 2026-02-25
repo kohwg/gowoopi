@@ -3,12 +3,11 @@ package repository
 import (
 	"time"
 
-	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/model"
 )
 
 type StoreRepository interface {
 	FindByID(id string) (*model.Store, error)
-	FindByIDAndUsername(id, username string) (*model.Store, error)
 }
 
 type CategoryRepository interface {
@@ -49,4 +48,9 @@ type OrderRepository interface {
 	Delete(id string) error
 	MoveToHistory(sessionID string) error
 	FindHistory(tableID uint, from, to *time.Time) ([]model.OrderHistory, error)
+}
+
+type AdminRepository interface {
+	FindByStoreAndUsername(storeID, username string) (*model.Admin, error)
+	Create(admin *model.Admin) error
 }

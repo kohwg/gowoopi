@@ -4,15 +4,15 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/kohwg/gowoopi/backend/internal/model"
-	"github.com/kohwg/gowoopi/backend/internal/testutil"
+	"github.com/gowoopi/backend/internal/model"
+	"github.com/gowoopi/backend/internal/testutil"
 )
 
 func TestStoreRepository_FindByID(t *testing.T) {
 	db := testutil.SetupTestDB(t)
 	repo := NewStoreRepository(db)
 
-	store := &model.Store{ID: uuid.New().String(), Name: "Test Store", AdminUsername: "admin", AdminPasswordHash: "hash", DefaultLanguage: "ko"}
+	store := &model.Store{ID: uuid.New().String(), Name: "Test Store", DefaultLanguage: "ko"}
 	db.Create(store)
 	defer testutil.CleanupTables(t, db, "stores")
 
@@ -32,22 +32,5 @@ func TestStoreRepository_FindByID_NotFound(t *testing.T) {
 	_, err := repo.FindByID("nonexistent")
 	if err == nil {
 		t.Error("FindByID() expected error for nonexistent store")
-	}
-}
-
-func TestStoreRepository_FindByIDAndUsername(t *testing.T) {
-	db := testutil.SetupTestDB(t)
-	repo := NewStoreRepository(db)
-
-	store := &model.Store{ID: uuid.New().String(), Name: "Test Store", AdminUsername: "admin", AdminPasswordHash: "hash"}
-	db.Create(store)
-	defer testutil.CleanupTables(t, db, "stores")
-
-	found, err := repo.FindByIDAndUsername(store.ID, "admin")
-	if err != nil {
-		t.Fatalf("FindByIDAndUsername() error = %v", err)
-	}
-	if found.AdminUsername != "admin" {
-		t.Errorf("FindByIDAndUsername() username = %q, want %q", found.AdminUsername, "admin")
 	}
 }
