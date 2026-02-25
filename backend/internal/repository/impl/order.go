@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/model"
 	"gorm.io/gorm"
 )
 

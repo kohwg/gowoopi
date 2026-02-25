@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gowoopi/backend/internal/database"
+	"github.com/kohwg/gowoopi/backend/internal/database"
 	"gorm.io/gorm"
 )
 

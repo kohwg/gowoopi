@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/gowoopi/backend/internal/model"
-	"github.com/gowoopi/backend/internal/repository"
+	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/repository"
 )
 
 type menuService struct {
@@ -75,7 +75,7 @@ func (s *menuService) DeleteMenu(id uint) error {
 func (s *menuService) UpdateMenuOrder(items []model.MenuOrderRequest) error {
 	inputs := make([]model.MenuOrderInput, len(items))
 	for i, item := range items {
-		inputs[i] = model.MenuOrderInput{ID: item.ID, SortOrder: item.SortOrder}
+		inputs[i] = model.MenuOrderInput(item)
 	}
 	return s.menuRepo.UpdateOrder(inputs)
 }

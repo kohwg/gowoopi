@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gowoopi/backend/internal/model"
-	"github.com/gowoopi/backend/internal/service"
+	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/service"
 )
 
 type AuthHandler struct {

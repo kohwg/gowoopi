@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/gowoopi/backend/internal/model"
-	"github.com/gowoopi/backend/internal/testutil"
+	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/testutil"
 )
 
 func setupSessionTestData(t *testing.T) (*sessionRepository, string, uint, func()) {

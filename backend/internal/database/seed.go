@@ -2,7 +2,7 @@ package database
 
 import (
 	"github.com/google/uuid"
-	"github.com/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/model"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

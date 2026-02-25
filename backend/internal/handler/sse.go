@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gowoopi/backend/internal/middleware"
-	"github.com/gowoopi/backend/internal/service"
+	"github.com/kohwg/gowoopi/backend/internal/middleware"
+	"github.com/kohwg/gowoopi/backend/internal/service"
 )
 
 type SSEHandler struct {
@@ -38,10 +38,10 @@ func (h *SSEHandler) StreamOrders(c *gin.Context) {
 				return false
 			}
 			data, _ := json.Marshal(event)
-			fmt.Fprintf(w, "data: %s\n\n", data)
+			_, _ = fmt.Fprintf(w, "data: %s\n\n", data)
 			return true
 		case <-ticker.C:
-			fmt.Fprintf(w, ": heartbeat\n\n")
+			_, _ = fmt.Fprintf(w, ": heartbeat\n\n")
 			return true
 		case <-c.Request.Context().Done():
 			return false

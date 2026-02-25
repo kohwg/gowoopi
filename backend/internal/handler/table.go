@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gowoopi/backend/internal/middleware"
-	"github.com/gowoopi/backend/internal/model"
-	"github.com/gowoopi/backend/internal/service"
+	"github.com/kohwg/gowoopi/backend/internal/middleware"
+	"github.com/kohwg/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/service"
 )
 
 type TableHandler struct {
