@@ -49,15 +49,22 @@
     "title": "주문 현황"
   },
   "table": {
-    "number": "테이블 {n}",
-    "number.label": "테이블 번호",
+    "number": {
+      "format": "테이블 {n}",
+      "label": "테이블 번호"
+    },
     "status": "상태",
     "totalAmount": "총 금액",
     "active": "이용중",
     "inactive": "비활성",
     "empty": "테이블이 없습니다",
     "management": "테이블 관리",
-    "setup": "테이블 설정",
+    "setup": {
+      "button": "테이블 설정",
+      "title": "테이블 설정",
+      "number": "테이블 번호",
+      "password": "비밀번호"
+    },
     "complete": "이용 완료",
     "completeConfirm": {
       "title": "이용 완료",

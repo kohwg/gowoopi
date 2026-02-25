@@ -49,15 +49,22 @@
     "title": "Order Status"
   },
   "table": {
-    "number": "Table {n}",
-    "number.label": "Table Number",
+    "number": {
+      "format": "Table {n}",
+      "label": "Table Number"
+    },
     "status": "Status",
     "totalAmount": "Total Amount",
     "active": "Active",
     "inactive": "Inactive",
     "empty": "No tables",
     "management": "Table Management",
-    "setup": "Table Setup",
+    "setup": {
+      "button": "Setup Table",
+      "title": "Table Setup",
+      "number": "Table Number",
+      "password": "Password"
+    },
     "complete": "Complete",
     "completeConfirm": {
       "title": "Complete Table",
