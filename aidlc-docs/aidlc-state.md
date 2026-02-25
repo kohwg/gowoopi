@@ -21,14 +21,26 @@
 - [x] Workspace Detection (COMPLETED - 2026-02-25T11:57:32+09:00)
 - [ ] Reverse Engineering (SKIPPED - Greenfield project)
 - [x] Requirements Analysis (COMPLETED - 2026-02-25T12:14:33+09:00)
-- [ ] User Stories (PENDING)
-- [ ] Workflow Planning (PENDING)
-- [ ] Application Design (PENDING)
-- [ ] Units Generation (PENDING)
+- [x] User Stories (COMPLETED - 2026-02-25T13:51:07+09:00)
+- [x] Workflow Planning (COMPLETED - 2026-02-25T13:51:07+09:00)
+- [x] Application Design (COMPLETED - 2026-02-25T14:02:59+09:00)
+- [x] Units Generation (COMPLETED - 2026-02-25T14:15:08+09:00)
+
+## 🟢 CONSTRUCTION PHASE
+
+### Unit 1: Database
+- [ ] Functional Design (IN PROGRESS)
+- [ ] NFR Requirements
+- [ ] NFR Design
+- [ ] Code Generation
 
 ### CONSTRUCTION PHASE
-- [ ] Per-Unit Design and Code Generation (PENDING)
-- [ ] Build and Test (PENDING)
+- [ ] Functional Design (EXECUTE, per-unit)
+- [ ] NFR Requirements (EXECUTE, per-unit)
+- [ ] NFR Design (EXECUTE, per-unit)
+- [ ] Infrastructure Design (SKIP - On-premises 배포)
+- [ ] Code Generation (EXECUTE, per-unit)
+- [ ] Build and Test (EXECUTE)
 
 ### OPERATIONS PHASE
 - [ ] Operations (PLACEHOLDER)

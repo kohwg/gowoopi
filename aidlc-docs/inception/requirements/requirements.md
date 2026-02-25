@@ -19,18 +19,18 @@ Complex - 실시간 주문 모니터링(SSE), 다중 사용자 세션 관리, �
 ## 1. 기술 스택
 
 ### 1.1 프론트엔드
-- **프레임워크**: React
-- **UI 라이브러리**: Tailwind CSS
+- **프레임워크**: React with TypeScript
+- **UI 라이브러리**: HeroUI v3 + Tailwind CSS
 - **상태 관리**: React Context API 또는 Redux (필요시)
 
 ### 1.2 백엔드
-- **언어/프레임워크**: Go (Gin 또는 Echo 프레임워크)
-- **인증**: JWT (HTTP-only Cookie 저장)
+- **언어/프레임워크**: Go (Gin)
+- **인증**: JWT (Access Token + Refresh Token, HTTP-only Cookie 저장)
 - **실시간 통신**: Server-Sent Events (SSE)
 
 ### 1.3 데이터베이스
-- **타입**: Relational Database (PostgreSQL 또는 MySQL)
-- **ORM**: GORM (Go) 또는 직접 SQL
+- **타입**: Relational Database (MySQL)
+- **ORM**: GORM
 
 ### 1.4 배포 환경
 - **환경**: 로컬 서버 (On-premises)
@@ -52,14 +52,14 @@ Complex - 실시간 주문 모니터링(SSE), 다중 사용자 세션 관리, �
   - 테이블 비밀번호 입력
   - 로그인 정보 Cookie에 저장
 - 자동 로그인: 저장된 정보로 자동 인증
-- 세션 유지: 16시간
+- 세션 유지: Access Token + Refresh Token 자동 갱신으로 계속 로그인 유지
 
 #### 2.1.2 메뉴 조회 및 탐색
 **기능**:
 - 메뉴 화면이 기본 화면
 - 카테고리별 메뉴 분류
 - 메뉴 상세 정보: 메뉴명, 가격, 설명, 이미지 (외부 URL)
-- 카드 형태 레이아웃
+- HeroUI Card 컴포넌트 기반 레이아웃
 - 터치 친화적 UI (최소 44x44px 버튼)
 
 #### 2.1.3 장바구니 관리
@@ -100,19 +100,19 @@ Complex - 실시간 주문 모니터링(SSE), 다중 사용자 세션 관리, �
 **기능**:
 - 매장 식별자 입력 (UUID)
 - 사용자명 및 비밀번호 입력
-- JWT 토큰 기반 인증 (HTTP-only Cookie)
-- 16시간 세션 유지
+- JWT 토큰 기반 인증 (Access Token + Refresh Token, HTTP-only Cookie)
+- Access Token + Refresh Token 자동 갱신으로 계속 로그인 유지
 - 브라우저 새로고침 시 세션 유지
 - 비밀번호 bcrypt 해싱
 
 #### 2.2.2 실시간 주문 모니터링
 **기능**:
 - Server-Sent Events (SSE) 기반 실시간 업데이트
-- 그리드/대시보드 레이아웃:
-  - 테이블별 카드 형태
+- HeroUI 컴포넌트 기반 그리드/대시보드 레이아웃:
+  - 테이블별 Card 컴포넌트
   - 각 테이블 총 주문액 표시
   - 최신 주문 n개 미리보기
-- 주문 카드 클릭 시 전체 메뉴 목록 상세 보기
+- 주문 카드 클릭 시 Modal로 전체 메뉴 목록 상세 보기
 - 주문 상태 변경 (대기중/준비중/완료)
 - 신규 주문 시각적 강조
 - 2초 이내 주문 표시
@@ -155,9 +155,12 @@ Complex - 실시간 주문 모니터링(SSE), 다중 사용자 세션 관리, �
 - **실시간 업데이트**: 2초 이내 주문 표시
 
 ### 3.2 보안
-- **인증**: JWT 기반, HTTP-only Cookie 저장
+- **인증**: JWT 기반 (Access Token + Refresh Token)
+  - Access Token: 짧은 만료 시간 (예: 15분)
+  - Refresh Token: 긴 만료 시간 (예: 7일)
+  - HTTP-only Cookie 저장
+  - 자동 갱신으로 계속 로그인 유지
 - **비밀번호**: bcrypt 해싱
-- **세션**: 16시간 자동 만료
 - **로그인 시도 제한**: 구현 권장
 
 ### 3.3 데이터 관리
@@ -292,16 +295,16 @@ Complex - 실시간 주문 모니터링(SSE), 다중 사용자 세션 관리, �
 2. **관리자**: 인증, 실시간 주문 모니터링(SSE), 테이블 관리, 메뉴 관리
 
 ### 핵심 기술
-- React + Tailwind CSS (프론트엔드)
-- Go + Gin/Echo (백엔드)
-- PostgreSQL/MySQL (데이터베이스)
-- JWT + HTTP-only Cookie (인증)
+- React + TypeScript + HeroUI v3 + Tailwind CSS (프론트엔드)
+- Go + Gin (백엔드)
+- MySQL (데이터베이스)
+- JWT (Access Token + Refresh Token) + HTTP-only Cookie (인증)
 - Server-Sent Events (실시간 통신)
 
 ### 핵심 품질 속성
 - 고성능 (API 응답 100ms 이하)
 - 확장성 (500명 이상 동시 접속)
-- 보안 (JWT, bcrypt, 세션 관리)
+- 보안 (JWT Access/Refresh Token, bcrypt, 자동 갱신)
 - 테스트 (Unit + Integration + E2E)
 - 다국어 (한국어 + 영어)
 
