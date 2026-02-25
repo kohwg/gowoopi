@@ -3,7 +3,7 @@ package handler
 import (
 	"testing"
 
-	"github.com/gowoopi/backend/internal/service"
+	"github.com/kohwg/gowoopi/backend/internal/service"
 )
 
 func TestSSEHandler_NewSSEHandler(t *testing.T) {

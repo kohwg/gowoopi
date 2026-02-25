@@ -3,8 +3,8 @@ package service
 import (
 	"testing"
 
-	"github.com/gowoopi/backend/internal/mock"
-	"github.com/gowoopi/backend/internal/model"
+	"github.com/kohwg/gowoopi/backend/internal/mock"
+	"github.com/kohwg/gowoopi/backend/internal/model"
 	"go.uber.org/mock/gomock"
 )
 
