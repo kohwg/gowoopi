@@ -110,3 +110,30 @@ tasks:
     cmds:
       - task: infra:down
       - docker volume rm gowoopi_mysql_data 2>/dev/null || true
+
+  # Parallel Development (Git Worktree)
+  worktree:setup:
+    desc: Setup worktrees for parallel unit development
+    cmds:
+      - git worktree add ../gowoopi-unit3 -b feat/unit3-customer-app main 2>/dev/null || echo "unit3 worktree already exists"
+      - git worktree add ../gowoopi-unit4 -b feat/unit4-admin-app main 2>/dev/null || echo "unit4 worktree already exists"
+      - git worktree list
+      - |
+        echo ""
+        echo "✅ Worktrees ready! Open separate terminals:"
+        echo "  Terminal 1: cd $(pwd)              # main/backend"
+        echo "  Terminal 2: cd $(pwd)/../gowoopi-unit3  # customer-app"
+        echo "  Terminal 3: cd $(pwd)/../gowoopi-unit4  # admin-app"
+
+  worktree:list:
+    desc: List all worktrees
+    cmds:
+      - git worktree list
+
+  worktree:clean:
+    desc: Remove all worktrees
+    cmds:
+      - git worktree remove ../gowoopi-unit3 --force 2>/dev/null || true
+      - git worktree remove ../gowoopi-unit4 --force 2>/dev/null || true
+      - git worktree prune
+      - echo "✅ Worktrees removed"
