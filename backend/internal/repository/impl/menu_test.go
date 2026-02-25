@@ -62,7 +62,7 @@ func TestMenuRepository_Delete_SoftDelete(t *testing.T) {
 	defer cleanup()
 
 	menu := &model.Menu{StoreID: storeID, CategoryID: catID, Name: "ToDelete", Price: 5000, IsAvailable: true}
-	repo.Create(menu)
+	_ = repo.Create(menu)
 
 	if err := repo.Delete(menu.ID); err != nil {
 		t.Fatalf("Delete() error = %v", err)
@@ -80,8 +80,8 @@ func TestMenuRepository_UpdateOrder(t *testing.T) {
 
 	m1 := &model.Menu{StoreID: storeID, CategoryID: catID, Name: "A", Price: 1000, SortOrder: 1, IsAvailable: true}
 	m2 := &model.Menu{StoreID: storeID, CategoryID: catID, Name: "B", Price: 2000, SortOrder: 2, IsAvailable: true}
-	repo.Create(m1)
-	repo.Create(m2)
+	_ = repo.Create(m1)
+	_ = repo.Create(m2)
 
 	err := repo.UpdateOrder([]model.MenuOrderInput{
 		{ID: m1.ID, SortOrder: 2},
